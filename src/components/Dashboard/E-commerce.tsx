@@ -20,7 +20,9 @@ import { RiTailwindCssFill } from "react-icons/ri";
 const ECommerce: React.FC = () => {
   return (
     <>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-2 2xl:gap-7.5">
+      <h1 className="text-4xl font-bold text-black dark:text-white text-center">The best code generators for developers</h1>
+      <p className="text-xl text-center py-6">Code generators for front-end development.</p>
+      <div className="grid grid-cols-1 gap-4 mt-14 md:grid-cols-2 md:gap-6 xl:grid-cols-2 2xl:gap-7.5">
         <CardDataStats title="CSS Generators" description="Generate highly customizable CSS properties. Preview the results before copying them to your website.">
           <FaCss3Alt className="text-[26px]" />
         </CardDataStats>
