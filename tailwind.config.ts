@@ -269,6 +269,10 @@ const config: Config = {
         linspin: {
           "100%": { transform: "rotate(360deg)" },
         },
+        slideDownFadeIn: {
+          '0%': { transform: 'translateY(-10px)' },
+          '100%': { transform: 'translateY(0)' },
+        },
         easespin: {
           "12.5%": { transform: "rotate(135deg)" },
           "25%": { transform: "rotate(270deg)" },
@@ -312,6 +316,7 @@ const config: Config = {
       },
       animation: {
         linspin: "linspin 1568.2353ms linear infinite",
+        'slide-down-fade-in': 'slide-down-fade-in 0.3s ease-in-out',
         easespin: "easespin 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both",
         "left-spin":
           "left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both",

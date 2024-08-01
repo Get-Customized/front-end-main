@@ -23,12 +23,13 @@ interface SidebarProps {
 
 const menuGroups = [
   {
+    name: "GENERATORS",
     menuItems: [
       {
         icon: (
           <RxDashboard className="text-[20px]" />
         ),
-        label: "Dashboard",
+        label: "CSS",
         route: "/",
         children: [{ label: "eCommerce", route: "/" }],
       },
@@ -36,14 +37,14 @@ const menuGroups = [
         icon: (
           <SlCalender className="text-[20px]" />
         ),
-        label: "Calendar",
+        label: "HTML",
         route: "#",
       },
       {
         icon: (
           <FaWpforms className="text-[20px]" />
         ),
-        label: "Forms",
+        label: "Tailwind CSS",
         route: "#",
         children: [
           {
