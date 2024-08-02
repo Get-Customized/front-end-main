@@ -7,8 +7,8 @@ import React from "react";
 // import TableOne from "../Tables/TableOne";
 import CardDataStats from "../CardDataStats";
 import { FaCss3Alt, FaHtml5 } from "react-icons/fa";
+import { DiBootstrap } from "react-icons/di";
 import { RiTailwindCssFill } from "react-icons/ri";
-import { BsBootstrap } from "react-icons/bs";
 
 // const MapOne = dynamic(() => import("@/components/Maps/MapOne"), {
 //   ssr: false,
@@ -25,16 +25,16 @@ const ECommerce: React.FC = () => {
       <p className="text-xl text-center py-4">Code generators for front-end development.</p>
       <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2 md:gap-6 xl:grid-cols-2 2xl:gap-7.5">
         <CardDataStats title="CSS Generators" description="Generate highly customizable CSS properties. Preview the results before copying them to your website." link="Read the docs">
-          <FaCss3Alt className="text-[26px]" />
+          <FaCss3Alt className="text-[26px] text-[#2755E9]" />
         </CardDataStats>
         <CardDataStats title="HTML Generator" description="Generate highly customizable HTML elements. Preview the results before copying them to your website." link="Read the docs">
-          <FaHtml5 className="text-[26px]" />
+          <FaHtml5 className="text-[26px] text-[#E34F26]" />
         </CardDataStats>
         <CardDataStats title="Tailwind CSS Generator" description="Generate highly customizable Tailwind CSS properties. Preview the results before copying them to your website." link="Read the docs">
-          <BsBootstrap className="text-[26px]" />
+          <DiBootstrap className="text-[26px] text-[#8512FA]" />
         </CardDataStats>
         <CardDataStats title="Tailwind CSS Generator" description="Generate highly customizable Tailwind CSS properties. Preview the results before copying them to your website." link="Read the docs">
-          <RiTailwindCssFill className="text-[26px]" />
+          <RiTailwindCssFill className="text-[26px] text-[#38BDF8]" />
         </CardDataStats>
       </div>
 
