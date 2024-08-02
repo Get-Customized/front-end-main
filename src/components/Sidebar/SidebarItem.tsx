@@ -1,4 +1,3 @@
-// SidebarItem.jsx
 import React from "react";
 import Link from "next/link";
 import SidebarDropdown from "@/components/Sidebar/SidebarDropdown";
@@ -44,8 +43,9 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
 
       {item.children && (
         <div
-          className={`overflow-hidden transition-max-height duration-300 ease-in-out ${pageName === item.label.toLowerCase() ? "max-h-screen" : "max-h-0"
+          className={`overflow-hidden transition-all duration-300 ease-in-out ${pageName === item.label.toLowerCase() ? "max-h-screen" : "max-h-0"
             }`}
+          style={{ maxHeight: pageName === item.label.toLowerCase() ? '1000px' : '0' }} // Adjust maxHeight for visibility
         >
           <SidebarDropdown item={item.children} />
         </div>

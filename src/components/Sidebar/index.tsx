@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 // import { usePathname } from "next/navigation";
 import Link from "next/link";
-// import Image from "next/image";
+import Image from "next/image";
 import SidebarItem from "@/components/Sidebar/SidebarItem";
 import ClickOutside from "@/components/ClickOutside";
 import useLocalStorage from "@/hooks/useLocalStorage";
@@ -29,7 +29,64 @@ const menuGroups = [
         ),
         label: "CSS",
         route: "/",
-        children: [{ label: "eCommerce", route: "/" }],
+        children: [
+          { label: "ANIMATION", route: "#" },
+          { label: "Keyframe Animation", route: "#" },
+          { label: "BACKGROUND", route: "#" },
+          { label: "Background Color", route: "#" },
+          { label: "Background Gradient", route: "#" },
+          { label: "Background Image", route: "#" },
+          { label: "BOX", route: "#" },
+          { label: "Border", route: "#" },
+          { label: "Border Image", route: "#" },
+          { label: "Border Radius", route: "#" },
+          { label: "Box Resize", route: "#" },
+          { label: "Box Shadow", route: "#" },
+          { label: "Opacity", route: "#" },
+          { label: "Outline", route: "#" },
+          { label: "Overflow", route: "#" },
+          { label: "COLOR", route: "#" },
+          { label: "Text Color", route: "#" },
+          { label: "FILTER", route: "#" },
+          { label: "Blur", route: "#" },
+          { label: "Brightness", route: "#" },
+          { label: "Contrast", route: "#" },
+          { label: "Drop Shadow", route: "#" },
+          { label: "Grayscale", route: "#" },
+          { label: "Hue Rotate", route: "#" },
+          { label: "Invert", route: "#" },
+          { label: "Saturate", route: "#" },
+          { label: "Sepia", route: "#" },
+          { label: "LAYOUT", route: "#" },
+          { label: "Columns", route: "#" },
+          { label: "Display", route: "#" },
+          { label: "Visibility", route: "#" },
+          { label: "LIST", route: "#" },
+          { label: "List Style", route: "#" },
+          { label: "MISCELLANEOUS", route: "#" },
+          { label: "Cursor", route: "#" },
+          { label: "TEXT", route: "#" },
+          { label: "Letter Spacing", route: "#" },
+          { label: "Line Height", route: "#" },
+          { label: "Overflow Wrap", route: "#" },
+          { label: "Tab Size", route: "#" },
+          { label: "Text Align", route: "#" },
+          { label: "Text Decoration", route: "#" },
+          { label: "Text Indent", route: "#" },
+          { label: "Text Shadow", route: "#" },
+          { label: "Text Transform", route: "#" },
+          { label: "White Space", route: "#" },
+          { label: "Word Break", route: "#" },
+          { label: "Word Spacing", route: "#" },
+          { label: "TRANSFORM", route: "#" },
+          { label: "Perspective", route: "#" },
+          { label: "Rotate", route: "#" },
+          { label: "Scale", route: "#" },
+          { label: "Skew", route: "#" },
+          { label: "Translate", route: "#" },
+          { label: "TRANSITION", route: "#" },
+          { label: "Transition", route: "#" }
+        ],
       },
       {
         icon: (
@@ -37,7 +94,24 @@ const menuGroups = [
         ),
         label: "HTML",
         route: "#",
-        children: [{ label: "eCommerce", route: "#" }],
+        children: [
+          { label: "INPUT", route: "#" },
+          { label: "Input Button", route: "#" },
+          { label: "Checkbox & Radio", route: "#" },
+          { label: "Color Input", route: "#" },
+          { label: "Date & Time Input", route: "#" },
+          { label: "Email Input", route: "#" },
+          { label: "File Input", route: "#" },
+          { label: "Image Input", route: "#" },
+          { label: "Number Input", route: "#" },
+          { label: "Password Input", route: "#" },
+          { label: "Range Input", route: "#" },
+          { label: "Submit Input", route: "#" },
+          { label: "Telephone Input", route: "#" },
+          { label: "Text Input", route: "#" },
+          { label: "Textarea", route: "#" },
+          { label: "URL Input", route: "#" }
+        ],
       },
       {
         icon: (
@@ -120,15 +194,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       >
         {/* <!-- SIDEBAR HEADER --> */}
         <div className="flex items-center text-2xl font-bold text-white text-nowrap justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-          <Link href="/">
+          <Link href="/" className="flex flex-row">
             {/* <Image
-              width={176}
-              height={32}
-              src={"/images/logo/logo.svg"}
+              width={50}
+              height={50}
+              src={"/images/logo/logo.png"}
               alt="Logo"
               priority
             /> */}
-            Code Customizer
+            <p>Code Customizer</p>
           </Link>
 
           <button

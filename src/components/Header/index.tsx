@@ -4,6 +4,7 @@ import DarkModeSwitcher from "./DarkModeSwitcher";
 // import DropdownNotification from "./DropdownNotification";
 import DropdownUser from "./DropdownUser";
 import Image from "next/image";
+// import logo from "../../../public/images/logo/Gear.png"
 import { FiSearch } from "react-icons/fi";
 
 const Header = (props: {
@@ -54,9 +55,9 @@ const Header = (props: {
 
           <Link className="block flex-shrink-0 lg:hidden" href="/">
             <Image
-              width={32}
-              height={32}
-              src={"/images/logo/logo-icon.svg"}
+              width={50}
+              height={50}
+              src={"/images/logo/logo.png"}
               alt="Logo"
             />
           </Link>
