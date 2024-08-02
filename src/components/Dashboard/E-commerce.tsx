@@ -8,6 +8,7 @@ import React from "react";
 import CardDataStats from "../CardDataStats";
 import { FaCss3Alt, FaHtml5 } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
+import { BsBootstrap } from "react-icons/bs";
 
 // const MapOne = dynamic(() => import("@/components/Maps/MapOne"), {
 //   ssr: false,
@@ -21,18 +22,18 @@ const ECommerce: React.FC = () => {
   return (
     <>
       <h1 className="text-4xl font-bold text-black dark:text-white text-center">The best code generators for developers</h1>
-      <p className="text-xl text-center py-6">Code generators for front-end development.</p>
-      <div className="grid grid-cols-1 gap-4 mt-14 md:grid-cols-2 md:gap-6 xl:grid-cols-2 2xl:gap-7.5">
-        <CardDataStats title="CSS Generators" description="Generate highly customizable CSS properties. Preview the results before copying them to your website.">
+      <p className="text-xl text-center py-4">Code generators for front-end development.</p>
+      <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2 md:gap-6 xl:grid-cols-2 2xl:gap-7.5">
+        <CardDataStats title="CSS Generators" description="Generate highly customizable CSS properties. Preview the results before copying them to your website." link="Read the docs">
           <FaCss3Alt className="text-[26px]" />
         </CardDataStats>
-        <CardDataStats title="HTML Generator" description="Generate highly customizable HTML elements. Preview the results before copying them to your website.">
+        <CardDataStats title="HTML Generator" description="Generate highly customizable HTML elements. Preview the results before copying them to your website." link="Read the docs">
           <FaHtml5 className="text-[26px]" />
         </CardDataStats>
-        <CardDataStats title="Tailwind CSS Generator" description="Generate highly customizable Tailwind CSS properties. Preview the results before copying them to your website.">
-          <RiTailwindCssFill className="text-[26px]" />
+        <CardDataStats title="Tailwind CSS Generator" description="Generate highly customizable Tailwind CSS properties. Preview the results before copying them to your website." link="Read the docs">
+          <BsBootstrap className="text-[26px]" />
         </CardDataStats>
-        <CardDataStats title="Tailwind CSS Generator" description="Generate highly customizable Tailwind CSS properties. Preview the results before copying them to your website.">
+        <CardDataStats title="Tailwind CSS Generator" description="Generate highly customizable Tailwind CSS properties. Preview the results before copying them to your website." link="Read the docs">
           <RiTailwindCssFill className="text-[26px]" />
         </CardDataStats>
       </div>

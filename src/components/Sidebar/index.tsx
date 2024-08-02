@@ -7,14 +7,12 @@ import Link from "next/link";
 import SidebarItem from "@/components/Sidebar/SidebarItem";
 import ClickOutside from "@/components/ClickOutside";
 import useLocalStorage from "@/hooks/useLocalStorage";
-import { RxDashboard } from "react-icons/rx";
-import { SlCalender } from "react-icons/sl";
-import { VscTable } from "react-icons/vsc";
 import { AiOutlinePieChart } from "react-icons/ai";
 import { BiLogOutCircle } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
-import { FaWpforms } from "react-icons/fa";
-import { BsBoxes } from "react-icons/bs";
+import { FaCss3Alt, FaHtml5 } from "react-icons/fa";
+import { BsBootstrap, BsBoxes } from "react-icons/bs";
+import { RiTailwindCssFill } from "react-icons/ri";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -27,7 +25,7 @@ const menuGroups = [
     menuItems: [
       {
         icon: (
-          <RxDashboard className="text-[20px]" />
+          <FaCss3Alt className="text-[20px]" />
         ),
         label: "CSS",
         route: "/",
@@ -35,30 +33,33 @@ const menuGroups = [
       },
       {
         icon: (
-          <SlCalender className="text-[20px]" />
+          <FaHtml5 className="text-[20px]" />
         ),
         label: "HTML",
         route: "#",
+        children: [{ label: "eCommerce", route: "#" }],
       },
       {
         icon: (
-          <FaWpforms className="text-[20px]" />
+          <BsBootstrap className="text-[20px]" />
         ),
-        label: "Tailwind CSS",
+        label: "Bootstrap CSS",
         route: "#",
         children: [
-          {
-            label: "Form Elements", route: "#",
-          },
+          { label: "Form Elements", route: "#", },
           { label: "Form Layout", route: "#", },
         ],
       },
       {
         icon: (
-          <VscTable className="text-[22px]" />
+          <RiTailwindCssFill className="text-[20px]" />
         ),
-        label: "Tables",
+        label: "Tailwind CSS",
         route: "#",
+        children: [
+          { label: "Form Elements", route: "#", },
+          { label: "Form Layout", route: "#", },
+        ],
       },
     ],
   },
