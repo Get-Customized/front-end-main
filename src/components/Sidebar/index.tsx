@@ -193,16 +193,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           }`}
       >
         {/* <!-- SIDEBAR HEADER --> */}
-        <div className="flex items-center text-2xl font-bold text-white text-nowrap justify-between gap-2 px-6 py-5.5 lg:py-6.5">
+        <div className="flex items-center text-2xl font-bold text-white text-nowrap justify-between gap-2 px-2 py-5.5 lg:py-6.5">
           <Link href="/" className="flex flex-row">
-            {/* <Image
-              width={50}
-              height={50}
-              src={"/images/logo/logo.png"}
+            <Image
+              width={200}
+              height={200}
+              src={"/images/logo/full-logo.png"}
               alt="Logo"
               priority
-            /> */}
-            <p>Code Customizer</p>
+            />
+            {/* <p>Code Customizer</p> */}
           </Link>
 
           <button
