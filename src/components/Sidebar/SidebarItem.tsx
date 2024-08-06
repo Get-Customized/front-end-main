@@ -4,11 +4,14 @@ import SidebarDropdown from "@/components/Sidebar/SidebarDropdown";
 import { usePathname } from "next/navigation";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-const SidebarItem = ({ item, pageName, setPageName }: any) => {
+const SidebarItem = ({ item, pageName, setPageName, openDropdown, setOpenDropdown }: any) => {
   const handleClick = () => {
     const updatedPageName =
       pageName !== item.label.toLowerCase() ? item.label.toLowerCase() : "";
     setPageName(updatedPageName);
+    if (item.children) {
+      setOpenDropdown(openDropdown === item.label ? null : item.label);
+    }
   };
 
   const pathname = usePathname();
@@ -22,32 +25,32 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
   };
 
   const isItemActive = isActive(item);
+  const isHighlighted = ["TRANSITION", "TRANSFORM", "TEXT", "MISCELLANEOUS", "LIST", "LAYOUT", "FILTER", "COLOR", "BOX", "ANIMATION"].includes(item.label.toUpperCase());
 
   return (
     <li>
       <Link
         href={item.route}
         onClick={handleClick}
-        className={`${isItemActive ? "bg-graydark dark:bg-meta-4" : ""
-          } group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
+        className={`${isItemActive ? "bg-graydark dark:bg-meta-4" : ""}
+          ${isHighlighted ? "bg-yellow-500 text-black" : ""}
+          group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
       >
         {item.icon}
         {item.label}
         {item.children && (
           <MdKeyboardArrowDown
-            className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-[20px] transition-transform duration-300 ease-in-out ${pageName === item.label.toLowerCase() && "rotate-180"
-              }`}
+            className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-[20px] transition-transform duration-300 ease-in-out ${openDropdown === item.label && "rotate-180"}`}
           />
         )}
       </Link>
 
       {item.children && (
         <div
-          className={`overflow-hidden transition-all duration-300 ease-in-out ${pageName === item.label.toLowerCase() ? "max-h-screen" : "max-h-0"
-            }`}
-          style={{ maxHeight: pageName === item.label.toLowerCase() ? '1000px' : '0' }} // Adjust maxHeight for visibility
+          className={`overflow-hidden transition-all duration-300 ease-in-out ${openDropdown === item.label ? "max-h-screen" : "max-h-0"}`}
+          style={{ maxHeight: openDropdown === item.label ? '1000px' : '0' }}
         >
-          <SidebarDropdown item={item.children} />
+          <SidebarDropdown item={item.children} pageName={pageName} setPageName={setPageName} openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} />
         </div>
       )}
     </li>

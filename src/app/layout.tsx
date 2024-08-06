@@ -7,15 +7,8 @@ import "@/css/custom.css";
 import React, { useEffect, useState } from "react";
 import Loader from "@/components/common/Loader";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   const [loading, setLoading] = useState<boolean>(true);
-
-  // const pathname = usePathname();
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);

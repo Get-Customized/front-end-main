@@ -56,7 +56,7 @@ const DropdownUser = () => {
             <li>
               <Link
                 href="/profile"
-                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-[#1C2434] lg:text-base"
               >
                 <CiUser className="text-[20px]" />
                 My Profile
@@ -64,27 +64,20 @@ const DropdownUser = () => {
             </li>
             <li>
               <Link
-                href="#"
-                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
-              >
-                <TiContacts className="text-[20px]" />
-                My Contacts
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="/settings"
-                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-[#1C2434] lg:text-base"
               >
                 <IoSettingsOutline className="text-[20px]" />
                 Account Settings
               </Link>
             </li>
           </ul>
-          <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
-            <BiLogOutCircle className="text-[20px]" />
-            Log Out
-          </button>
+          <Link href="/auth/signin">
+            <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-[#1C2434] lg:text-base">
+              <BiLogOutCircle className="text-[20px]" />
+              Log Out
+            </button>
+          </Link>
         </div>
       )}
       {/* <!-- Dropdown End --> */}

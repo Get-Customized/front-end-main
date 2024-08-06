@@ -1,7 +1,5 @@
 "use client";
-
-import React, { useEffect, useRef, useState } from "react";
-// import { usePathname } from "next/navigation";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import SidebarItem from "@/components/Sidebar/SidebarItem";
@@ -24,115 +22,97 @@ const menuGroups = [
     name: "GENERATORS",
     menuItems: [
       {
-        icon: (
-          <FaCss3Alt className="text-[20px]" />
-        ),
+        icon: <FaCss3Alt className="text-[20px]" />,
         label: "CSS",
-        route: "/",
+        route: "#",
         children: [
-          { label: "ANIMATION", route: "#" },
-          { label: "Keyframe Animation", route: "#" },
-          { label: "BACKGROUND", route: "#" },
-          { label: "Background Color", route: "#" },
-          { label: "Background Gradient", route: "#" },
-          { label: "Background Image", route: "#" },
-          { label: "BOX", route: "#" },
-          { label: "Border", route: "#" },
-          { label: "Border Image", route: "#" },
-          { label: "Border Radius", route: "#" },
-          { label: "Box Resize", route: "#" },
-          { label: "Box Shadow", route: "#" },
-          { label: "Opacity", route: "#" },
-          { label: "Outline", route: "#" },
-          { label: "Overflow", route: "#" },
-          { label: "COLOR", route: "#" },
-          { label: "Text Color", route: "#" },
-          { label: "FILTER", route: "#" },
-          { label: "Blur", route: "#" },
-          { label: "Brightness", route: "#" },
-          { label: "Contrast", route: "#" },
-          { label: "Drop Shadow", route: "#" },
-          { label: "Grayscale", route: "#" },
-          { label: "Hue Rotate", route: "#" },
-          { label: "Invert", route: "#" },
-          { label: "Saturate", route: "#" },
-          { label: "Sepia", route: "#" },
-          { label: "LAYOUT", route: "#" },
-          { label: "Columns", route: "#" },
-          { label: "Display", route: "#" },
-          { label: "Visibility", route: "#" },
-          { label: "LIST", route: "#" },
-          { label: "List Style", route: "#" },
-          { label: "MISCELLANEOUS", route: "#" },
-          { label: "Cursor", route: "#" },
-          { label: "TEXT", route: "#" },
-          { label: "Letter Spacing", route: "#" },
-          { label: "Line Height", route: "#" },
-          { label: "Overflow Wrap", route: "#" },
-          { label: "Tab Size", route: "#" },
-          { label: "Text Align", route: "#" },
-          { label: "Text Decoration", route: "#" },
-          { label: "Text Indent", route: "#" },
-          { label: "Text Shadow", route: "#" },
-          { label: "Text Transform", route: "#" },
-          { label: "White Space", route: "#" },
-          { label: "Word Break", route: "#" },
-          { label: "Word Spacing", route: "#" },
-          { label: "TRANSFORM", route: "#" },
-          { label: "Perspective", route: "#" },
-          { label: "Rotate", route: "#" },
-          { label: "Scale", route: "#" },
-          { label: "Skew", route: "#" },
-          { label: "Translate", route: "#" },
-          { label: "TRANSITION", route: "#" },
-          { label: "Transition", route: "#" }
+          {
+            label: "ANIMATION", route: "#", children: [
+              { label: "Keyframe Animation", route: "#" },
+              { label: "Background Animation", route: "#" },
+            ]
+          },
+          {
+            label: "BOX", route: "#", children: [
+              { label: "Border", route: "#" },
+              { label: "Box Shadow", route: "#" },
+            ]
+          },
+          {
+            label: "FILTER", route: "#", children: [
+              { label: "Blur", route: "#" },
+              { label: "Brightness", route: "#" },
+            ]
+          },
+          {
+            label: "TEXT", route: "#", children: [
+              { label: "Letter Spacing", route: "#" },
+              { label: "Text Transform", route: "#" },
+            ]
+          },
+          {
+            label: "LIST", route: "#", children: [
+              { label: "List Style", route: "#" },
+            ]
+          },
+          {
+            label: "LAYOUT", route: "#", children: [
+              { label: "Columns", route: "#" },
+              { label: "Display", route: "#" },
+            ]
+          },
+          {
+            label: "COLOR", route: "#", children: [
+              { label: "Text Color", route: "#" },
+            ]
+          },
+          {
+            label: "TRANSFORM", route: "#", children: [
+              { label: "Perspective", route: "#" },
+              { label: "Rotate", route: "#" },
+            ]
+          },
+          {
+            label: "TRANSITION", route: "#", children: [
+              { label: "Transition", route: "#" },
+            ]
+          },
+          {
+            label: "MISCELLANEOUS", route: "#", children: [
+              { label: "Cursor", route: "#" },
+            ]
+          },
         ],
       },
       {
-        icon: (
-          <FaHtml5 className="text-[20px]" />
-        ),
+        icon: <FaHtml5 className="text-[20px]" />,
         label: "HTML",
         route: "#",
         children: [
-          { label: "INPUT", route: "#" },
-          { label: "Input Button", route: "#" },
-          { label: "Checkbox & Radio", route: "#" },
-          { label: "Color Input", route: "#" },
-          { label: "Date & Time Input", route: "#" },
-          { label: "Email Input", route: "#" },
-          { label: "File Input", route: "#" },
-          { label: "Image Input", route: "#" },
-          { label: "Number Input", route: "#" },
-          { label: "Password Input", route: "#" },
-          { label: "Range Input", route: "#" },
-          { label: "Submit Input", route: "#" },
-          { label: "Telephone Input", route: "#" },
-          { label: "Text Input", route: "#" },
-          { label: "Textarea", route: "#" },
-          { label: "URL Input", route: "#" }
+          {
+            label: "INPUT", route: "#", children: [
+              { label: "Input Button", route: "#" },
+              { label: "Checkbox & Radio", route: "#" },
+            ]
+          },
         ],
       },
       {
-        icon: (
-          <BsBootstrap className="text-[20px]" />
-        ),
+        icon: <BsBootstrap className="text-[20px]" />,
         label: "Bootstrap CSS",
         route: "#",
         children: [
-          { label: "Form Elements", route: "#", },
-          { label: "Form Layout", route: "#", },
+          { label: "Form Elements", route: "#" },
+          { label: "Form Layout", route: "#" },
         ],
       },
       {
-        icon: (
-          <RiTailwindCssFill className="text-[20px]" />
-        ),
+        icon: <RiTailwindCssFill className="text-[20px]" />,
         label: "Tailwind CSS",
         route: "#",
         children: [
-          { label: "Form Elements", route: "#", },
-          { label: "Form Layout", route: "#", },
+          { label: "Form Elements", route: "#" },
+          { label: "Form Layout", route: "#" },
         ],
       },
     ],
@@ -141,16 +121,12 @@ const menuGroups = [
     name: "OTHERS",
     menuItems: [
       {
-        icon: (
-          <AiOutlinePieChart className="text-[24px]" />
-        ),
+        icon: <AiOutlinePieChart className="text-[24px]" />,
         label: "Chart",
         route: "#",
       },
       {
-        icon: (
-          <BsBoxes className="text-[20px]" />
-        ),
+        icon: <BsBoxes className="text-[20px]" />,
         label: "UI Elements",
         route: "#",
         children: [
@@ -168,9 +144,7 @@ const menuGroups = [
         ],
       },
       {
-        icon: (
-          <BiLogOutCircle className="text-[24px]" />
-        ),
+        icon: <BiLogOutCircle className="text-[24px]" />,
         label: "Authentication",
         route: "#",
         children: [
@@ -183,26 +157,23 @@ const menuGroups = [
 ];
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
-  // const pathname = usePathname();
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
+  const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
       <aside
-        className={`fixed left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+        className={`fixed left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
-        {/* <!-- SIDEBAR HEADER --> */}
         <div className="flex items-center text-2xl font-bold text-white text-nowrap justify-between gap-2 px-2 py-5.5 lg:py-6.5">
           <Link href="/" className="flex flex-row">
             <Image
               width={200}
               height={200}
-              src={"/images/logo/full-logo.png"}
+              src={"/images/logo/codecutsomizer-white.png"}
               alt="Logo"
               priority
             />
-            {/* <p>Code Customizer</p> */}
           </Link>
 
           <button
@@ -213,10 +184,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <IoClose className="text-[24px]" />
           </button>
         </div>
-        {/* <!-- SIDEBAR HEADER --> */}
 
         <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
-          {/* <!-- Sidebar Menu --> */}
           <nav className="mt-5 px-4 py-4 lg:mt-9 lg:px-4">
             {menuGroups.map((group, groupIndex) => (
               <div key={groupIndex}>
@@ -231,13 +200,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       item={menuItem}
                       pageName={pageName}
                       setPageName={setPageName}
+                      openDropdown={openDropdown}
+                      setOpenDropdown={setOpenDropdown}
                     />
                   ))}
                 </ul>
               </div>
             ))}
           </nav>
-          {/* <!-- Sidebar Menu --> */}
         </div>
       </aside>
     </ClickOutside>

@@ -4,8 +4,8 @@ import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export const metadata: Metadata = {
   title:
-    "Next.js E-commerce Dashboard | TailAdmin - Next.js Dashboard Template",
-  description: "This is Next.js Home for TailAdmin Dashboard Template",
+    "Code Customizer",
+  description: "Streamline your development process and build visually stunning websites with our intuitive and customizable code generator tool.",
 };
 
 export default function Home() {
@@ -13,7 +13,6 @@ export default function Home() {
     <>
       <DefaultLayout>
         <ECommerce />
-        {/* <p>Here is body content</p> */}
       </DefaultLayout>
     </>
   );
