@@ -27,7 +27,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({ title, description, link,
           </h4>
           <span className="text-sm font-medium">{description}</span>
           <div className="pt-4 text-base font-semibold leading-7 group">
-            <p onClick={handleTryNowClick} className="flex flex-row cursor-pointer text-sky-500 hover:underline transition-all duration-300">
+            <p onClick={handleTryNowClick} className="flex flex-row cursor-pointer text-[#1F8C9C] hover:underline transition-all duration-300">
               {link}
               <FaArrowRight className="rtl:rotate-180 w-3.5 h-3.5 ms-2 mt-2 transition-transform duration-300 group-hover:translate-x-1" />
             </p>

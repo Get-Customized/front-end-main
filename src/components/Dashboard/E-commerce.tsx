@@ -13,7 +13,7 @@ const ECommerce: React.FC = () => {
     console.log("Card clicked:", title);
 
     if (title == "CSS Generators") {
-      router.push('/chart');
+      router.push('/Generator');
     } else if (title == "HTML Generators") {
       router.push('/calendar');
     } else if (title == "Tailwind CSS Generator") {

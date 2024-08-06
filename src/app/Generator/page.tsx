@@ -1,5 +1,5 @@
 import React from "react";
-import Chart from "@/components/Charts/page";
+import ComponentPages from "@/components/ComponentPages/page";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   description: "Streamline your development process and build visually stunning websites with our intuitive and customizable code generator tool.",
 };
 
-const BasicChartPage: React.FC = () => {
+const BasicGeneratorPage: React.FC = () => {
   return (
     <DefaultLayout>
-      <Chart />
+      <ComponentPages />
     </DefaultLayout>
   );
 };
 
-export default BasicChartPage;
+export default BasicGeneratorPage;

@@ -69,7 +69,7 @@ const SignUp: React.FC = () => {
                     <input
                       type="text"
                       placeholder="Enter your full name"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-[#1F8C9C] focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-[#1F8C9C]"
                     />
 
                     <span className="absolute right-4 top-4">
@@ -86,7 +86,7 @@ const SignUp: React.FC = () => {
                     <input
                       type="email"
                       placeholder="Enter your email"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-[#1F8C9C] focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-[#1F8C9C]"
                     />
 
                     <span className="absolute right-4 top-4">
@@ -103,7 +103,7 @@ const SignUp: React.FC = () => {
                     <input
                       type="password"
                       placeholder="Enter your password"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-[#1F8C9C] focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-[#1F8C9C]"
                     />
 
                     <span className="absolute right-4 top-4">
@@ -120,7 +120,7 @@ const SignUp: React.FC = () => {
                     <input
                       type="password"
                       placeholder="Re-enter your password"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-[#1F8C9C] focus-visible:shadow-none hover:opacity-50 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-[#1F8C9C]"
                     />
 
                     <span className="absolute right-4 top-4">
@@ -133,7 +133,7 @@ const SignUp: React.FC = () => {
                   <input
                     type="submit"
                     value="Create account"
-                    className="w-full cursor-pointer rounded-lg border border-[#1C2434] bg-[#1C2434] p-4 text-white transition hover:bg-opacity-90"
+                    className="w-full cursor-pointer rounded-lg border border-[#1C2434] bg-[#1C2434] dark:bg-[#1F8C9C] p-4 text-white transition hover:bg-opacity-90"
                   />
                 </div>
 
@@ -152,7 +152,7 @@ const SignUp: React.FC = () => {
                 <div className="mt-6 text-center">
                   <p>
                     Already have an account?
-                    <Link href="/auth/signin" className="text-[#1C2434] px-2 dark:text-white">
+                    <Link href="/auth/signin" className="text-[#1C2434] px-2 dark:text-white hover:text-[#1F8C9C]">
                       Sign in
                     </Link>
                   </p>

@@ -109,7 +109,7 @@ const SignIn: React.FC = () => {
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                        className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-[#1F8C9C] focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-[#1F8C9C]"
                       />
                       <span className="absolute right-4 top-4">
                         <CiMail />
@@ -130,7 +130,7 @@ const SignIn: React.FC = () => {
                         placeholder="6+ Characters, 1 Capital letter"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                        className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-[#1F8C9C] focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-[#1F8C9C]"
                       />
                       <span className="absolute right-4 top-4">
                         <CiLock />
@@ -142,7 +142,7 @@ const SignIn: React.FC = () => {
                     )}
 
                     {validPassword.includes("password") && (
-                      <p className="text-black  text-sm mt-1">{validPassword}</p>
+                      <p className="text-black dark:text-white text-sm mt-1">{validPassword}</p>
                     )}
                   </div>
 
@@ -154,7 +154,7 @@ const SignIn: React.FC = () => {
                     <input
                       type="submit"
                       value="Sign In"
-                      className="w-full cursor-pointer rounded-lg border border-[#1C2434] bg-[#1C2434] p-4 text-white transition hover:bg-opacity-90"
+                      className="w-full cursor-pointer rounded-lg border border-[#1C2434] bg-[#1C2434] dark:bg-[#1F8C9C] p-4 text-white transition hover:bg-opacity-90"
                     />
                   </div>
 
@@ -173,7 +173,7 @@ const SignIn: React.FC = () => {
                   <div className="mt-6 text-center">
                     <p>
                       Don’t have an account?
-                      <Link href="/auth/signup" className="text-[#1C2434] px-2 dark:text-white">
+                      <Link href="/auth/signup" className="text-[#1C2434] px-2 dark:text-white hover:text-[#1F8C9C]">
                         Sign Up
                       </Link>
                     </p>

@@ -5,7 +5,6 @@ import Image from "next/image";
 import ClickOutside from "@/components/ClickOutside";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { CiUser } from "react-icons/ci";
-import { TiContacts } from "react-icons/ti";
 import { IoSettingsOutline } from "react-icons/io5";
 import { BiLogOutCircle } from "react-icons/bi";
 
@@ -56,7 +55,7 @@ const DropdownUser = () => {
             <li>
               <Link
                 href="/profile"
-                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-[#1C2434] lg:text-base"
+                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-[#1F8C9C] lg:text-base"
               >
                 <CiUser className="text-[20px]" />
                 My Profile
@@ -65,7 +64,7 @@ const DropdownUser = () => {
             <li>
               <Link
                 href="/settings"
-                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-[#1C2434] lg:text-base"
+                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-[#1F8C9C] lg:text-base"
               >
                 <IoSettingsOutline className="text-[20px]" />
                 Account Settings
@@ -73,7 +72,7 @@ const DropdownUser = () => {
             </li>
           </ul>
           <Link href="/auth/signin">
-            <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-[#1C2434] lg:text-base">
+            <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-[#1F8C9C] lg:text-base">
               <BiLogOutCircle className="text-[20px]" />
               Log Out
             </button>

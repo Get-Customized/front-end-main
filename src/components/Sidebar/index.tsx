@@ -130,7 +130,8 @@ const menuGroups = [
         label: "UI Elements",
         route: "#",
         children: [
-          { label: "Buttons", route: "#" },
+          { label: "Buttons", route: "/ui/buttons" },
+          { label: "Alerts", route: "/ui/alerts" },
           { label: "Heading", route: "#" },
           { label: "Input", route: "#" },
           { label: "List", route: "#" },
@@ -139,8 +140,7 @@ const menuGroups = [
           { label: "Textarea", route: "#" },
           { label: "Select", route: "#" },
           { label: "Dropdown", route: "#" },
-          { label: "Progress", route: "#" },
-          { label: "Alerts", route: "#" },
+          { label: "Progress", route: "#" }
         ],
       },
       {
