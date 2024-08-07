@@ -25,7 +25,7 @@ const menuGroups: any[] = [
       {
         icon: <FaCss3Alt className="text-[20px]" />,
         label: "CSS",
-        route: "#",
+        route: "/",
         children: [
           {
             label: "ANIMATION", route: "#", children: [
@@ -94,8 +94,53 @@ const menuGroups: any[] = [
             label: "INPUT", route: "#", children: [
               { label: "Input Button", route: "#" },
               { label: "Checkbox & Radio", route: "#" },
+              { label: "Color Input", route: "#" },
+              { label: "Date & Time Input", route: "#" },
+              { label: "Email Input", route: "#" },
+              { label: "File Input", route: "#" },
+              { label: "Image Input", route: "#" },
+              { label: "Number Input", route: "#" },
+              { label: "Password Input", route: "#" },
+              { label: "Range Input", route: "#" },
+              { label: "Search Input", route: "#" },
+              { label: "Submit Input", route: "#" },
+              { label: "Telephone Input", route: "#" },
+              { label: "Text Input", route: "#" },
+              { label: "Textarea", route: "#" },
+              { label: "URL Input", route: "#" }
             ]
           },
+          {
+            label: "MEDIA", route: "#", children: [
+              { label: "Audio Player", route: "#" },
+              { label: "Image", route: "#" },
+              { label: "Video Player", route: "#" }
+            ]
+          },
+          {
+            label: "TEXT", route: "#", children: [
+              { label: "Bi-Directional Override", route: "#" },
+              { label: "Bold", route: "#" },
+              { label: "Cite", route: "#" },
+              { label: "Code", route: "#" },
+              { label: "Italic", route: "#" },
+              { label: "Highlight (Mark)", route: "#" },
+              { label: "Quote & Blockquote", route: "#" },
+              { label: "Strikethrough", route: "#" },
+              { label: "Superscript & Subscript", route: "#" },
+              { label: "Underline", route: "#" }
+            ]
+          },
+          {
+            label: "OTHERS", route: "#", children: [
+              { label: "Details", route: "#" },
+              { label: "Dialog", route: "#" },
+              { label: "Hyperlink", route: "#" },
+              { label: "iframe", route: "#" },
+              { label: "Meter", route: "#" },
+              { label: "Progress", route: "#" }
+            ]
+          }
         ],
       },
       {
@@ -159,7 +204,8 @@ const menuGroups: any[] = [
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
-  const [openDropdowns, setOpenDropdowns] = React.useState<string[]>([]);
+  const [openMainMenu, setOpenMainMenu] = React.useState<string | null>(null);
+  const [openSubMenu, setOpenSubMenu] = React.useState<string | null>(null);
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
@@ -201,8 +247,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       item={menuItem}
                       pageName={pageName}
                       setPageName={setPageName}
-                      openDropdowns={openDropdowns}
-                      setOpenDropdowns={setOpenDropdowns}
+                      openMainMenu={openMainMenu}
+                      setOpenMainMenu={setOpenMainMenu}
+                      openSubMenu={openSubMenu}
+                      setOpenSubMenu={setOpenSubMenu}
                     />
                   ))}
                 </ul>
