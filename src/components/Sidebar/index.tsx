@@ -1,3 +1,4 @@
+// Sidebar.tsx
 "use client";
 import React from "react";
 import Link from "next/link";
@@ -17,7 +18,7 @@ interface SidebarProps {
   setSidebarOpen: (arg: boolean) => void;
 }
 
-const menuGroups = [
+const menuGroups: any[] = [
   {
     name: "GENERATORS",
     menuItems: [
@@ -158,7 +159,7 @@ const menuGroups = [
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
-  const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
+  const [openDropdowns, setOpenDropdowns] = React.useState<string[]>([]);
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
@@ -194,14 +195,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </h3>
 
                 <ul className="mb-6 flex flex-col gap-1.5">
-                  {group.menuItems.map((menuItem, menuIndex) => (
+                  {group.menuItems.map((menuItem: any, menuIndex: React.Key | null | undefined) => (
                     <SidebarItem
                       key={menuIndex}
                       item={menuItem}
                       pageName={pageName}
                       setPageName={setPageName}
-                      openDropdown={openDropdown}
-                      setOpenDropdown={setOpenDropdown}
+                      openDropdowns={openDropdowns}
+                      setOpenDropdowns={setOpenDropdowns}
                     />
                   ))}
                 </ul>

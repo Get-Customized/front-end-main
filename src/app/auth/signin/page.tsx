@@ -82,7 +82,7 @@ const SignIn: React.FC = () => {
 
                 <span className="mt-15 inline-block">
                   <Image
-                    src={"/images/authentication/bg-sigin-white.png"}
+                    src={"/images/authentication/bg-sigin-dark.png"}
                     alt="Logo"
                     width={250}
                     height={150}
@@ -136,6 +136,7 @@ const SignIn: React.FC = () => {
                         <CiLock />
                       </span>
                     </div>
+
 
                     {error.includes("password") && (
                       <p className="text-[#FF0000]  text-sm mt-1">{error}</p>

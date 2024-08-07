@@ -44,7 +44,7 @@ const SignUp: React.FC = () => {
 
               <span className="mt-15 inline-block">
                 <Image
-                  src={"/images/authentication/bg-sigin-white.png"}
+                  src={"/images/authentication/bg-sigin-dark.png"}
                   alt="Logo"
                   width={250}
                   height={250}

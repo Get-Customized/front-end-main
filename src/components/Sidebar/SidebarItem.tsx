@@ -1,20 +1,32 @@
+// SidebarItem.tsx
 import React from "react";
 import Link from "next/link";
 import SidebarDropdown from "@/components/Sidebar/SidebarDropdown";
 import { usePathname } from "next/navigation";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-const SidebarItem = ({ item, pageName, setPageName, openDropdown, setOpenDropdown }: any) => {
-  const handleClick = () => {
+interface SidebarItemProps {
+  item: any;
+  pageName: string;
+  setPageName: (pageName: string) => void;
+  openDropdowns: string[];
+  setOpenDropdowns: (openDropdowns: string[]) => void;
+}
+
+const SidebarItem: React.FC<SidebarItemProps> = ({ item, pageName, setPageName, openDropdowns, setOpenDropdowns }) => {
+  const pathname = usePathname();
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     const updatedPageName =
       pageName !== item.label.toLowerCase() ? item.label.toLowerCase() : "";
     setPageName(updatedPageName);
     if (item.children) {
-      setOpenDropdown(openDropdown === item.label ? null : item.label);
+      setOpenDropdowns(openDropdowns.includes(item.label)
+        ? openDropdowns.filter(label => label !== item.label)
+        : [...openDropdowns, item.label]);
     }
   };
-
-  const pathname = usePathname();
 
   const isActive = (currentItem: any) => {
     if (currentItem.route === pathname) return true;
@@ -40,17 +52,17 @@ const SidebarItem = ({ item, pageName, setPageName, openDropdown, setOpenDropdow
         {item.label}
         {item.children && (
           <MdKeyboardArrowDown
-            className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-[20px] transition-transform duration-300 ease-in-out ${openDropdown === item.label && "rotate-180"}`}
+            className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-[20px] transition-transform duration-300 ease-in-out ${openDropdowns.includes(item.label) && "rotate-180"}`}
           />
         )}
       </Link>
 
       {item.children && (
         <div
-          className={`overflow-hidden transition-all duration-300 ease-in-out ${openDropdown === item.label ? "max-h-screen" : "max-h-0"}`}
-          style={{ maxHeight: openDropdown === item.label ? '1000px' : '0' }}
+          className={`overflow-hidden transition-all duration-300 ease-in-out ${openDropdowns.includes(item.label) ? "max-h-screen" : "max-h-0"}`}
+          style={{ maxHeight: openDropdowns.includes(item.label) ? '1000px' : '0' }}
         >
-          <SidebarDropdown item={item.children} pageName={pageName} setPageName={setPageName} openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} />
+          <SidebarDropdown item={item.children} pageName={pageName} setPageName={setPageName} openDropdowns={openDropdowns} setOpenDropdowns={setOpenDropdowns} />
         </div>
       )}
     </li>
