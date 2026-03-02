@@ -22,16 +22,18 @@ const SidebarDropdown: React.FC<SidebarDropdownProps> = ({
   const pathname = usePathname();
 
   const handleSubItemClick = (e: React.MouseEvent, subItem: any) => {
-    e.preventDefault();
-
-    const updatedPageName = pageName !== subItem.label.toLowerCase() ? subItem.label.toLowerCase() : "";
+    const updatedPageName =
+      pageName !== subItem.label.toLowerCase() ? subItem.label.toLowerCase() : "";
     setPageName(updatedPageName);
-    if (subItem.children) {
+
+    // For menu containers or placeholder routes, prevent navigation and just toggle submenu
+    if (subItem.children || subItem.route === "#") {
+      e.preventDefault();
       setOpenSubMenu(openSubMenu === subItem.label ? null : subItem.label);
     }
   };
 
-  const isActive = (currentItem: any) => {
+  const isActive = (currentItem: any): boolean => {
     if (currentItem.route === pathname) return true;
     if (currentItem.children) {
       return currentItem.children.some((child: any) => isActive(child));
@@ -48,22 +50,36 @@ const SidebarDropdown: React.FC<SidebarDropdownProps> = ({
           <Link
             href={subItem.route}
             onClick={(e) => handleSubItemClick(e, subItem)}
-            className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${isItemActive ? "text-white" : ""}`}
+            className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
+              isItemActive ? "text-white" : ""
+            }`}
           >
             {subItem.label}
             {subItem.children && (
               <MdKeyboardArrowDown
-                className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-[20px] transition-transform duration-300 ease-in-out ${openSubMenu === subItem.label && "rotate-180"}`}
+                className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-[20px] transition-transform duration-300 ease-in-out ${
+                  openSubMenu === subItem.label && "rotate-180"
+                }`}
               />
             )}
           </Link>
 
           {subItem.children && (
             <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubMenu === subItem.label ? "max-h-screen" : "max-h-0"}`}
-              style={{ maxHeight: openSubMenu === subItem.label ? '500px' : '0' }}
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                openSubMenu === subItem.label ? "max-h-screen" : "max-h-0"
+              }`}
+              style={{
+                maxHeight: openSubMenu === subItem.label ? "500px" : "0",
+              }}
             >
-              <SidebarDropdown item={subItem.children} pageName={pageName} setPageName={setPageName} openSubMenu={openSubMenu} setOpenSubMenu={setOpenSubMenu} />
+              <SidebarDropdown
+                item={subItem.children}
+                pageName={pageName}
+                setPageName={setPageName}
+                openSubMenu={openSubMenu}
+                setOpenSubMenu={setOpenSubMenu}
+              />
             </div>
           )}
         </li>
@@ -73,3 +89,4 @@ const SidebarDropdown: React.FC<SidebarDropdownProps> = ({
 };
 
 export default SidebarDropdown;
+

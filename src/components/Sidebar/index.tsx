@@ -178,15 +178,15 @@ const menuGroups: any[] = [
         children: [
           { label: "Buttons", route: "/ui/buttons" },
           { label: "Alerts", route: "/ui/alerts" },
-          { label: "Heading", route: "#" },
-          { label: "Input", route: "#" },
-          { label: "List", route: "#" },
-          { label: "Container", route: "#" },
-          { label: "Dialog", route: "#" },
-          { label: "Textarea", route: "#" },
-          { label: "Select", route: "#" },
-          { label: "Dropdown", route: "#" },
-          { label: "Progress", route: "#" }
+          { label: "Heading", route: "/ui/heading" },
+          { label: "Input", route: "/ui/input" },
+          { label: "List", route: "/ui/list" },
+          { label: "Container", route: "/ui/container" },
+          { label: "Dialog", route: "/ui/dialog" },
+          { label: "Textarea", route: "/ui/textarea" },
+          { label: "Select", route: "/ui/select" },
+          { label: "Dropdown", route: "/ui/dropdown" },
+          { label: "Progress", route: "/ui/progress" }
         ],
       },
       {
