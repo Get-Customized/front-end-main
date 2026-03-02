@@ -1,6 +1,6 @@
-import { title } from 'process';
 import React from 'react';
 import { IoChevronForward } from 'react-icons/io5';
+import NeumorphismGenerator from './NeumorphismGenerator';
 
 const CSSComponents = () => {
   const aniamtionsPropertiesList = [
@@ -87,6 +87,8 @@ const CSSComponents = () => {
           ))}
         </div>
       </div>
+
+      <NeumorphismGenerator />
     </>
   )
 }

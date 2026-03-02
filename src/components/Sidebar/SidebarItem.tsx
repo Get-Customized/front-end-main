@@ -15,14 +15,26 @@ interface SidebarItemProps {
   setOpenSubMenu: (openSubMenu: string | null) => void;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ item, pageName, setPageName, openMainMenu, setOpenMainMenu, openSubMenu, setOpenSubMenu }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({
+  item,
+  pageName,
+  setPageName,
+  openMainMenu,
+  setOpenMainMenu,
+  openSubMenu,
+  setOpenSubMenu,
+}) => {
   const pathname = usePathname();
 
   const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const updatedPageName = pageName !== item.label.toLowerCase() ? item.label.toLowerCase() : "";
+    const updatedPageName =
+      pageName !== item.label.toLowerCase() ? item.label.toLowerCase() : "";
     setPageName(updatedPageName);
-    if (item.children) {
+
+    // If this item is only a container (has children or no real route),
+    // prevent navigation and just toggle the submenu.
+    if (item.children || item.route === "#") {
+      e.preventDefault();
       setOpenMainMenu(openMainMenu === item.label ? null : item.label);
       setOpenSubMenu(null); // Close any open submenu when a main menu item is clicked
     }

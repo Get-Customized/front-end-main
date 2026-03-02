@@ -2,6 +2,7 @@ import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
+import ButtonPlayground from "@/components/Playgrounds/ButtonPlayground";
 
 export const metadata: Metadata = {
   title:
@@ -13,6 +14,8 @@ const Buttons = () => {
   return (
     <DefaultLayout>
       <Breadcrumb pageName="Buttons" />
+
+      <ButtonPlayground />
 
       {/* <!-- Normal Button Items --> */}
       <div className="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
