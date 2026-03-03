@@ -17,10 +17,10 @@ const HeadingPlayground: React.FC = () => {
       level === "h1"
         ? "text-3xl md:text-4xl font-bold"
         : level === "h2"
-        ? "text-2xl md:text-3xl font-semibold"
-        : level === "h3"
-        ? "text-xl md:text-2xl font-semibold"
-        : "text-lg md:text-xl font-medium";
+          ? "text-2xl md:text-3xl font-semibold"
+          : level === "h3"
+            ? "text-xl md:text-2xl font-semibold"
+            : "text-lg md:text-xl font-medium";
 
     const alignClass =
       align === "center" ? "text-center" : align === "right" ? "text-right" : "text-left";
@@ -55,8 +55,8 @@ const HeadingPlayground: React.FC = () => {
 
       <div className="grid gap-8 p-4 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:p-6 xl:p-9">
         <div className="flex items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-50 py-10 dark:border-gray-700 dark:bg-gray-900">
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          <HeadingTag className={className as any}>{text}</HeadingTag>
+          {/* No more eslint-disable or "as any" needed */}
+          <HeadingTag className={className}>{text}</HeadingTag>
         </div>
 
         <div className="space-y-5">
