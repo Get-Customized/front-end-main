@@ -15,7 +15,14 @@ const InputPlayground: React.FC = () => {
   const [fullWidth, setFullWidth] = useState(true);
   const [disabled, setDisabled] = useState(false);
 
-  const { wrapperClass, inputClass, codeSnippet } = useMemo(() => {
+  const {
+    wrapperClass,
+    inputClass,
+    jsxSnippet,
+    cssSnippet,
+    htmlSnippet,
+    bootstrapSnippet,
+  } = useMemo(() => {
     const sizeClass =
       size === "sm"
         ? "px-3 py-2 text-xs"
@@ -45,7 +52,7 @@ const InputPlayground: React.FC = () => {
 
     const wrapperClass = "flex flex-col gap-2";
 
-    const code = `<label className="mb-1 block text-sm font-medium text-black dark:text-white">
+    const jsxSnippet = `<label className="mb-1 block text-sm font-medium text-black dark:text-white">
   ${label}
 </label>
 <input
@@ -55,12 +62,66 @@ const InputPlayground: React.FC = () => {
   ${disabled ? "disabled" : ""}
 />`;
 
-    return { wrapperClass, inputClass, codeSnippet: code };
+    const basePadding =
+      size === "sm" ? "0.5rem 0.75rem" : size === "lg" ? "0.875rem 1.125rem" : "0.75rem 1rem";
+    const borderRadiusCss =
+      radius === "none" ? "0px" : radius === "md" ? "0.5rem" : "9999px";
+
+    const cssSnippet = `.neu-input-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.neu-input {
+  width: ${fullWidth ? "100%" : "18rem"};
+  padding: ${basePadding};
+  border-radius: ${borderRadiusCss};
+  border: 1.5px solid ${variant === "filled" ? "transparent" : "#E5E7EB"};
+  background: ${variant === "filled" ? "#F3F4F6" : "transparent"};
+  color: #111827;
+  box-shadow: 4px 4px 8px rgba(15, 23, 42, 0.15),
+              -4px -4px 8px rgba(255, 255, 255, 0.9);
+}
+
+.neu-input:focus {
+  outline: none;
+  border-color: #1D4ED8;
+}`;
+
+    const htmlSnippet = `<label class="neu-input-label">
+  ${label}
+</label>
+<input
+  type="text"
+  class="neu-input"
+  placeholder="${placeholder}"${disabled ? "\n  disabled" : ""}
+/>`;
+
+    const bootstrapSnippet = `<div class="mb-3">
+  <label class="form-label">${label}</label>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="${placeholder}"${disabled ? "\n    disabled" : ""}
+  />
+</div>`;
+
+    return {
+      wrapperClass,
+      inputClass,
+      jsxSnippet,
+      cssSnippet,
+      htmlSnippet,
+      bootstrapSnippet,
+    };
   }, [disabled, fullWidth, label, placeholder, radius, size, variant]);
 
-  const handleCopy = async () => {
+  const copyToClipboard = async (text: string) => {
     try {
-      await navigator.clipboard.writeText(codeSnippet);
+      await navigator.clipboard.writeText(text);
     } catch {
       // ignore
     }
@@ -71,7 +132,8 @@ const InputPlayground: React.FC = () => {
       <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
         <h3 className="font-medium text-black dark:text-white">Input Generator</h3>
         <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-          Configure label, size, and style, then copy the JSX.
+          Configure label, size, and style, then copy JSX, plain HTML + CSS, or
+          Bootstrap markup.
         </p>
       </div>
 
@@ -180,14 +242,53 @@ const InputPlayground: React.FC = () => {
               </span>
               <button
                 type="button"
-                onClick={handleCopy}
+                onClick={() => copyToClipboard(jsxSnippet)}
                 className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
               >
-                Copy
+                Copy JSX
               </button>
             </div>
-            <pre className="max-h-52 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{codeSnippet}</code>
+            <pre className="max-h-40 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+              <code>{jsxSnippet}</code>
+            </pre>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                Plain CSS + HTML
+              </span>
+              <button
+                type="button"
+                onClick={() => copyToClipboard(`${cssSnippet}\n\n${htmlSnippet}`)}
+                className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+              >
+                Copy HTML &amp; CSS
+              </button>
+            </div>
+            <pre className="max-h-40 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+              <code>{cssSnippet}</code>
+            </pre>
+            <pre className="max-h-32 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+              <code>{htmlSnippet}</code>
+            </pre>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                Bootstrap Markup
+              </span>
+              <button
+                type="button"
+                onClick={() => copyToClipboard(bootstrapSnippet)}
+                className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+              >
+                Copy Bootstrap
+              </button>
+            </div>
+            <pre className="max-h-32 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+              <code>{bootstrapSnippet}</code>
             </pre>
           </div>
         </div>
