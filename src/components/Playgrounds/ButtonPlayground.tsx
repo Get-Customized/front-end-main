@@ -15,7 +15,13 @@ const ButtonPlayground: React.FC = () => {
   const [size, setSize] = useState<Size>("md");
   const [fullWidth, setFullWidth] = useState(false);
 
-  const { className, codeSnippet } = useMemo(() => {
+  const {
+    className,
+    jsxSnippet,
+    cssSnippet,
+    htmlSnippet,
+    bootstrapSnippet,
+  } = useMemo(() => {
     const base =
       "inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2";
 
@@ -43,26 +49,57 @@ const ButtonPlayground: React.FC = () => {
 
     const widthClass = fullWidth ? "w-full" : "";
 
-    const className = [
-      base,
-      sizeClass,
-      radiusClass,
-      variantClass,
-      widthClass,
-    ]
+    const className = [base, sizeClass, radiusClass, variantClass, widthClass]
       .filter(Boolean)
       .join(" ");
 
-    const codeSnippet = `<button className="${className}">
+    const jsxSnippet = `<button className="${className}">
   ${label}
 </button>`;
 
-    return { className, codeSnippet };
+    // Very simple CSS approximation (not Tailwind-powered),
+    // giving users a starting point for plain CSS.
+    const basePadding =
+      size === "sm" ? "0.5rem 1rem" : size === "lg" ? "1rem 2.5rem" : "0.75rem 1.75rem";
+    const borderRadiusCss =
+      radius === "none" ? "0px" : radius === "md" ? "0.375rem" : "9999px";
+
+    const colorHex =
+      color === "primary" ? "#1D4ED8" : color === "meta-3" ? "#10B981" : "#111827";
+
+    const isOutline = variant === "outline";
+
+    const cssSnippet = `.neu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: ${basePadding};
+  border-radius: ${borderRadiusCss};
+  font-weight: 500;
+  border: ${isOutline ? "1px solid " + colorHex : "none"};
+  background: ${isOutline ? "transparent" : colorHex};
+  color: ${isOutline ? colorHex : "#ffffff"};
+  box-shadow: 8px 8px 16px rgba(15, 23, 42, 0.35),
+              -8px -8px 16px rgba(255, 255, 255, 0.9);
+}`;
+
+    const htmlSnippet = `<button class="neu-button">
+  ${label}
+</button>`;
+
+    const bootstrapVariant =
+      color === "primary" ? "primary" : color === "meta-3" ? "success" : "dark";
+
+    const bootstrapSnippet = `<button class="btn btn-${bootstrapVariant}">
+  ${label}
+</button>`;
+
+    return { className, jsxSnippet, cssSnippet, htmlSnippet, bootstrapSnippet };
   }, [color, fullWidth, label, radius, size, variant]);
 
-  const handleCopy = async () => {
+  const copyToClipboard = async (text: string) => {
     try {
-      await navigator.clipboard.writeText(codeSnippet);
+      await navigator.clipboard.writeText(text);
     } catch {
       // ignore clipboard errors
     }
@@ -71,12 +108,10 @@ const ButtonPlayground: React.FC = () => {
   return (
     <section className="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
-        <h3 className="font-medium text-black dark:text-white">
-          Button Generator
-        </h3>
+        <h3 className="font-medium text-black dark:text-white">Button Generator</h3>
         <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-          Tweak the button visually and copy the JSX snippet with Tailwind
-          classes.
+          Tweak the button visually and copy JSX, plain CSS / HTML, or Bootstrap
+          code.
         </p>
       </div>
 
@@ -192,14 +227,53 @@ const ButtonPlayground: React.FC = () => {
               </span>
               <button
                 type="button"
-                onClick={handleCopy}
+                onClick={() => copyToClipboard(jsxSnippet)}
                 className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
               >
-                Copy
+                Copy JSX
               </button>
             </div>
-            <pre className="max-h-52 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{codeSnippet}</code>
+            <pre className="max-h-40 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+              <code>{jsxSnippet}</code>
+            </pre>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                Plain CSS + HTML
+              </span>
+              <button
+                type="button"
+                onClick={() => copyToClipboard(`${cssSnippet}\n\n${htmlSnippet}`)}
+                className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+              >
+                Copy HTML &amp; CSS
+              </button>
+            </div>
+            <pre className="max-h-40 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+              <code>{cssSnippet}</code>
+            </pre>
+            <pre className="max-h-32 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+              <code>{htmlSnippet}</code>
+            </pre>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                Bootstrap Markup
+              </span>
+              <button
+                type="button"
+                onClick={() => copyToClipboard(bootstrapSnippet)}
+                className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+              >
+                Copy Bootstrap
+              </button>
+            </div>
+            <pre className="max-h-32 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+              <code>{bootstrapSnippet}</code>
             </pre>
           </div>
         </div>

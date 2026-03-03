@@ -9,7 +9,13 @@ const ContainerPlayground: React.FC = () => {
   const [shadow, setShadow] = useState<Shadow>("lg");
   const [rounded, setRounded] = useState(true);
 
-  const { containerClass, codeSnippet } = useMemo(() => {
+  const {
+    containerClass,
+    jsxSnippet,
+    cssSnippet,
+    htmlSnippet,
+    bootstrapSnippet,
+  } = useMemo(() => {
     const paddingClass =
       padding <= 12 ? "p-3" : padding <= 24 ? "p-6" : padding <= 32 ? "p-8" : "p-10";
 
@@ -24,16 +30,72 @@ const ContainerPlayground: React.FC = () => {
 
     const containerClass = `${paddingClass} ${radiusClass} ${shadowClass} border border-stroke bg-white dark:border-strokedark dark:bg-boxdark`;
 
-    const code = `<div className="${containerClass}">
-  {/* Your content here */}
+    const jsxSnippet = `<div className="${containerClass}">
+  <h4 className="mb-2 text-sm font-semibold text-black dark:text-white">
+    Container title
+  </h4>
+  <p className="text-xs text-gray-600 dark:text-gray-300">
+    Use this pattern for cards, panels, or sections in your layout.
+  </p>
 </div>`;
 
-    return { containerClass, codeSnippet: code };
+    const px = padding <= 12 ? "0.75rem" : padding <= 24 ? "1.5rem" : padding <= 32 ? "2rem" : "2.5rem";
+    const py = px;
+
+    const radiusCss = rounded ? "0.75rem" : "0px";
+
+    const boxShadowCss =
+      shadow === "none"
+        ? "none"
+        : shadow === "sm"
+        ? "4px 4px 8px rgba(15, 23, 42, 0.15), -4px -4px 8px rgba(255, 255, 255, 0.9)"
+        : "10px 10px 24px rgba(15, 23, 42, 0.35), -10px -10px 24px rgba(255, 255, 255, 0.95)";
+
+    const cssSnippet = `.neu-card {
+  padding: ${py} ${px};
+  border-radius: ${radiusCss};
+  border: 1px solid #E5E7EB;
+  background: #F9FAFB;
+  box-shadow: ${boxShadowCss};
+}
+
+.neu-card-title {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.neu-card-body {
+  font-size: 0.75rem;
+  color: #4B5563;
+}`;
+
+    const htmlSnippet = `<div class="neu-card">
+  <h4 class="neu-card-title">Container title</h4>
+  <p class="neu-card-body">
+    Use this pattern for cards, panels, or sections in your layout.
+  </p>
+</div>`;
+
+    const bootstrapShadow =
+      shadow === "none" ? "" : shadow === "sm" ? " shadow-sm" : " shadow-lg";
+
+    const bootstrapSnippet = `<div class="card${bootstrapShadow}">
+  <div class="card-body">
+    <h5 class="card-title">Container title</h5>
+    <p class="card-text">
+      Use this pattern for cards, panels, or sections in your layout.
+    </p>
+  </div>
+</div>`;
+
+    return { containerClass, jsxSnippet, cssSnippet, htmlSnippet, bootstrapSnippet };
   }, [padding, rounded, shadow]);
 
-  const handleCopy = async () => {
+  const copyToClipboard = async (text: string) => {
     try {
-      await navigator.clipboard.writeText(codeSnippet);
+      await navigator.clipboard.writeText(text);
     } catch {
       // ignore
     }
@@ -107,14 +169,53 @@ const ContainerPlayground: React.FC = () => {
               </span>
               <button
                 type="button"
-                onClick={handleCopy}
+                onClick={() => copyToClipboard(jsxSnippet)}
                 className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
               >
-                Copy
+                Copy JSX
               </button>
             </div>
-            <pre className="max-h-52 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{codeSnippet}</code>
+            <pre className="max-h-40 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+              <code>{jsxSnippet}</code>
+            </pre>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                Plain CSS + HTML
+              </span>
+              <button
+                type="button"
+                onClick={() => copyToClipboard(`${cssSnippet}\n\n${htmlSnippet}`)}
+                className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+              >
+                Copy HTML &amp; CSS
+              </button>
+            </div>
+            <pre className="max-h-40 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+              <code>{cssSnippet}</code>
+            </pre>
+            <pre className="max-h-32 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+              <code>{htmlSnippet}</code>
+            </pre>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                Bootstrap Markup
+              </span>
+              <button
+                type="button"
+                onClick={() => copyToClipboard(bootstrapSnippet)}
+                className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+              >
+                Copy Bootstrap
+              </button>
+            </div>
+            <pre className="max-h-32 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+              <code>{bootstrapSnippet}</code>
             </pre>
           </div>
         </div>
