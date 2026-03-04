@@ -63,7 +63,7 @@ const SidebarDropdown: React.FC<SidebarDropdownProps> = ({
               onClick={(e) => handleSubItemClick(e, subItem)}
               className={`group relative flex items-center gap-2.5 rounded-md px-4 py-1.5 font-medium duration-300 ease-in-out ${
                 isSubItemActive
-                  ? "bg-primary/20 text-primary"
+                  ? "bg-primary/20 text-primary dark:bg-primary/30 dark:text-white"
                   : "text-body hover:text-black dark:text-bodydark2 dark:hover:text-white"
               }`}
             >
