@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 interface SidebarDropdownProps {
   item: any;
@@ -20,6 +20,18 @@ const SidebarDropdown: React.FC<SidebarDropdownProps> = ({
   setOpenSubMenu,
 }) => {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const mode = searchParams.get("mode");
+
+  const shouldCarryMode = (route: string) =>
+    route === "/ui/buttons" || route === "/ui/input" || route === "/ui/container";
+
+  const getHref = (route: string) => {
+    if (!mode || !shouldCarryMode(route)) {
+      return route;
+    }
+    return `${route}?mode=${mode}`;
+  };
 
   const handleSubItemClick = (e: React.MouseEvent, subItem: any) => {
     const updatedPageName =
@@ -48,7 +60,7 @@ const SidebarDropdown: React.FC<SidebarDropdownProps> = ({
       {item.map((subItem: any, index: number) => (
         <li key={index}>
           <Link
-            href={subItem.route}
+            href={getHref(subItem.route)}
             onClick={(e) => handleSubItemClick(e, subItem)}
             className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
               isItemActive ? "text-white" : ""
