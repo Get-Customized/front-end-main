@@ -3,8 +3,13 @@
 import React, { useMemo, useState } from "react";
 
 type ListType = "unordered" | "ordered";
+type GeneratorMode = "tailwind" | "css" | "bootstrap";
 
-const ListPlayground: React.FC = () => {
+interface ListPlaygroundProps {
+  mode?: GeneratorMode;
+}
+
+const ListPlayground: React.FC<ListPlaygroundProps> = ({ mode = "tailwind" }) => {
   const [type, setType] = useState<ListType>("unordered");
   const [itemsText, setItemsText] = useState("First item, Second item, Third item");
 
@@ -30,13 +35,38 @@ ${itemsMarkup}
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(codeSnippet);
+      await navigator.clipboard.writeText(activeSnippet);
     } catch {
       // ignore
     }
   };
 
   const DynamicList = ListTag as keyof JSX.IntrinsicElements;
+
+  const cssSnippet = `.custom-list {
+  padding-left: 1.25rem;
+  font-size: 0.875rem;
+  color: #1f2937;
+}
+
+.custom-list li + li {
+  margin-top: 0.25rem;
+}`;
+
+  const htmlSnippet = `<${ListTag} class="custom-list">
+${items.map((i) => `  <li>${i}</li>`).join("\n")}
+</${ListTag}>`;
+
+  const bootstrapSnippet = `<${ListTag} class="list-group list-group-numbered">
+${items.map((i) => `  <li class="list-group-item">${i}</li>`).join("\n")}
+</${ListTag}>`;
+
+  const activeSnippet =
+    mode === "tailwind" ? codeSnippet : mode === "css" ? `${cssSnippet}\n\n${htmlSnippet}` : bootstrapSnippet;
+  const snippetTitle =
+    mode === "tailwind" ? "JSX Snippet" : mode === "css" ? "Plain CSS + HTML" : "Bootstrap Markup";
+  const copyLabel =
+    mode === "tailwind" ? "Copy JSX" : mode === "css" ? "Copy HTML & CSS" : "Copy Bootstrap";
 
   return (
     <section className="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -83,18 +113,18 @@ ${itemsMarkup}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                HTML Snippet
+                {snippetTitle}
               </span>
               <button
                 type="button"
                 onClick={handleCopy}
                 className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
               >
-                Copy
+                {copyLabel}
               </button>
             </div>
             <pre className="max-h-52 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{codeSnippet}</code>
+              <code>{activeSnippet}</code>
             </pre>
           </div>
         </div>

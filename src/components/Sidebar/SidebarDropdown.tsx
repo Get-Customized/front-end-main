@@ -23,8 +23,7 @@ const SidebarDropdown: React.FC<SidebarDropdownProps> = ({
   const searchParams = useSearchParams();
   const mode = searchParams.get("mode");
 
-  const shouldCarryMode = (route: string) =>
-    route === "/ui/buttons" || route === "/ui/input" || route === "/ui/container";
+  const shouldCarryMode = (route: string) => route.startsWith("/ui/");
 
   const getHref = (route: string) => {
     if (!mode || !shouldCarryMode(route)) {

@@ -3,8 +3,13 @@
 import React, { useMemo, useState } from "react";
 
 type Size = "sm" | "md" | "lg";
+type GeneratorMode = "tailwind" | "css" | "bootstrap";
 
-const TextareaPlayground: React.FC = () => {
+interface TextareaPlaygroundProps {
+  mode?: GeneratorMode;
+}
+
+const TextareaPlayground: React.FC<TextareaPlaygroundProps> = ({ mode = "tailwind" }) => {
   const [label, setLabel] = useState("Message");
   const [placeholder, setPlaceholder] = useState("Write your thoughts...");
   const [rows, setRows] = useState(4);
@@ -37,11 +42,36 @@ const TextareaPlayground: React.FC = () => {
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(codeSnippet);
+      await navigator.clipboard.writeText(activeSnippet);
     } catch {
       // ignore
     }
   };
+
+  const paddingCss =
+    size === "sm" ? "0.5rem 0.75rem" : size === "lg" ? "0.75rem 1.25rem" : "0.625rem 1rem";
+
+  const cssSnippet = `.custom-textarea {
+  width: 100%;
+  padding: ${paddingCss};
+  border-radius: 0.5rem;
+  border: 1.5px solid #d1d5db;
+}`;
+
+  const htmlSnippet = `<label>${label}</label>
+<textarea rows="${rows}" class="custom-textarea" placeholder="${placeholder}"></textarea>`;
+
+  const bootstrapSnippet = `<div class="mb-3">
+  <label class="form-label">${label}</label>
+  <textarea class="form-control" rows="${rows}" placeholder="${placeholder}"></textarea>
+</div>`;
+
+  const activeSnippet =
+    mode === "tailwind" ? codeSnippet : mode === "css" ? `${cssSnippet}\n\n${htmlSnippet}` : bootstrapSnippet;
+  const snippetTitle =
+    mode === "tailwind" ? "JSX Snippet" : mode === "css" ? "Plain CSS + HTML" : "Bootstrap Markup";
+  const copyLabel =
+    mode === "tailwind" ? "Copy JSX" : mode === "css" ? "Copy HTML & CSS" : "Copy Bootstrap";
 
   return (
     <section className="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -114,18 +144,18 @@ const TextareaPlayground: React.FC = () => {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                JSX Snippet
+                {snippetTitle}
               </span>
               <button
                 type="button"
                 onClick={handleCopy}
                 className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
               >
-                Copy
+                {copyLabel}
               </button>
             </div>
             <pre className="max-h-52 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{codeSnippet}</code>
+              <code>{activeSnippet}</code>
             </pre>
           </div>
         </div>

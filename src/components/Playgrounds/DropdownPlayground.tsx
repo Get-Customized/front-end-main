@@ -2,7 +2,13 @@
 
 import React, { useMemo, useState } from "react";
 
-const DropdownPlayground: React.FC = () => {
+type GeneratorMode = "tailwind" | "css" | "bootstrap";
+
+interface DropdownPlaygroundProps {
+  mode?: GeneratorMode;
+}
+
+const DropdownPlayground: React.FC<DropdownPlaygroundProps> = ({ mode = "tailwind" }) => {
   const [label, setLabel] = useState("Actions");
   const [itemsText, setItemsText] = useState("Edit, Duplicate, Archive");
 
@@ -40,11 +46,51 @@ ${itemsMarkup}
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(codeSnippet);
+      await navigator.clipboard.writeText(activeSnippet);
     } catch {
       // ignore
     }
   };
+
+  const htmlItems = items.map((i) => `    <button class="dropdown-item" type="button">${i}</button>`).join("\n");
+
+  const cssSnippet = `.dropdown-custom {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu-custom {
+  position: absolute;
+  right: 0;
+  margin-top: 0.25rem;
+  min-width: 10rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background: #ffffff;
+}`;
+
+  const htmlSnippet = `<div class="dropdown-custom">
+  <button>${label}</button>
+  <div class="dropdown-menu-custom">
+${items.map((i) => `    <button type="button">${i}</button>`).join("\n")}
+  </div>
+</div>`;
+
+  const bootstrapSnippet = `<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+    ${label}
+  </button>
+  <div class="dropdown-menu show">
+${htmlItems}
+  </div>
+</div>`;
+
+  const activeSnippet =
+    mode === "tailwind" ? codeSnippet : mode === "css" ? `${cssSnippet}\n\n${htmlSnippet}` : bootstrapSnippet;
+  const snippetTitle =
+    mode === "tailwind" ? "JSX Snippet" : mode === "css" ? "Plain CSS + HTML" : "Bootstrap Markup";
+  const copyLabel =
+    mode === "tailwind" ? "Copy JSX" : mode === "css" ? "Copy HTML & CSS" : "Copy Bootstrap";
 
   return (
     <section className="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -106,18 +152,18 @@ ${itemsMarkup}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                JSX Snippet
+                {snippetTitle}
               </span>
               <button
                 type="button"
                 onClick={handleCopy}
                 className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
               >
-                Copy
+                {copyLabel}
               </button>
             </div>
             <pre className="max-h-52 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{codeSnippet}</code>
+              <code>{activeSnippet}</code>
             </pre>
           </div>
         </div>
