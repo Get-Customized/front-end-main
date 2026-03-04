@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from "react";
 
 type Tone = "warning" | "success" | "error" | "info";
+type GeneratorMode = "tailwind" | "css" | "bootstrap";
 
 const toneStyles: Record<Tone, { border: string; bg: string; title: string }> = {
   warning: {
@@ -27,7 +28,11 @@ const toneStyles: Record<Tone, { border: string; bg: string; title: string }> = 
   },
 };
 
-const AlertPlayground: React.FC = () => {
+interface AlertPlaygroundProps {
+  mode?: GeneratorMode;
+}
+
+const AlertPlayground: React.FC<AlertPlaygroundProps> = ({ mode = "tailwind" }) => {
   const [tone, setTone] = useState<Tone>("warning");
   const [title, setTitle] = useState("Attention needed");
   const [body, setBody] = useState(
@@ -57,13 +62,62 @@ const AlertPlayground: React.FC = () => {
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(codeSnippet);
+      await navigator.clipboard.writeText(activeSnippet);
     } catch {
       // ignore
     }
   };
 
   const style = toneStyles[tone];
+  const toneColor =
+    tone === "warning"
+      ? "#FBBF24"
+      : tone === "success"
+      ? "#34D399"
+      : tone === "error"
+      ? "#F87171"
+      : "#3C50E0";
+  const bootstrapTone =
+    tone === "warning" ? "warning" : tone === "success" ? "success" : tone === "error" ? "danger" : "info";
+
+  const cssSnippet = `.custom-alert {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-left: 6px solid ${toneColor};
+  background: color-mix(in srgb, ${toneColor} 15%, white);
+  border-radius: 0.5rem;
+}
+
+.custom-alert-title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.custom-alert-body {
+  margin: 0;
+  font-size: 0.875rem;
+}`;
+
+  const htmlSnippet = `<div class="custom-alert">
+  <div>
+    <h5 class="custom-alert-title">${title}</h5>
+    <p class="custom-alert-body">${body}</p>
+  </div>
+</div>`;
+
+  const bootstrapSnippet = `<div class="alert alert-${bootstrapTone}" role="alert">
+  <h5 class="alert-heading">${title}</h5>
+  <p class="mb-0">${body}</p>
+</div>`;
+
+  const activeSnippet =
+    mode === "tailwind" ? codeSnippet : mode === "css" ? `${cssSnippet}\n\n${htmlSnippet}` : bootstrapSnippet;
+  const snippetTitle =
+    mode === "tailwind" ? "JSX Snippet" : mode === "css" ? "Plain CSS + HTML" : "Bootstrap Markup";
+  const copyLabel =
+    mode === "tailwind" ? "Copy JSX" : mode === "css" ? "Copy HTML & CSS" : "Copy Bootstrap";
 
   return (
     <section className="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -128,18 +182,18 @@ const AlertPlayground: React.FC = () => {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                JSX Snippet
+                {snippetTitle}
               </span>
               <button
                 type="button"
                 onClick={handleCopy}
                 className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
               >
-                Copy
+                {copyLabel}
               </button>
             </div>
             <pre className="max-h-52 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{codeSnippet}</code>
+              <code>{activeSnippet}</code>
             </pre>
           </div>
         </div>

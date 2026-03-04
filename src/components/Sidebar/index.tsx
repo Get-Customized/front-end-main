@@ -6,6 +6,7 @@ import Image from "next/image";
 import SidebarItem from "@/components/Sidebar/SidebarItem";
 import ClickOutside from "@/components/ClickOutside";
 import useLocalStorage from "@/hooks/useLocalStorage";
+import { usePathname } from "next/navigation";
 import { AiOutlinePieChart } from "react-icons/ai";
 import { BiLogOutCircle } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
@@ -17,6 +18,12 @@ interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (arg: boolean) => void;
 }
+
+const getOpenMenuFromPath = (pathname: string): string | null => {
+  if (pathname.startsWith("/ui/")) return "UI Elements";
+  if (pathname.startsWith("/auth/")) return "Authentication";
+  return null;
+};
 
 const menuGroups: any[] = [
   {
@@ -59,9 +66,19 @@ const menuGroups: any[] = [
 ];
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
+  const pathname = usePathname();
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
-  const [openMainMenu, setOpenMainMenu] = React.useState<string | null>(null);
+  const [openMainMenu, setOpenMainMenu] = React.useState<string | null>(() =>
+    getOpenMenuFromPath(pathname),
+  );
   const [openSubMenu, setOpenSubMenu] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    const menuFromPath = getOpenMenuFromPath(pathname);
+    if (menuFromPath && menuFromPath !== openMainMenu) {
+      setOpenMainMenu(menuFromPath);
+    }
+  }, [openMainMenu, pathname]);
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>

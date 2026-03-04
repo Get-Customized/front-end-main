@@ -3,8 +3,13 @@
 import React, { useMemo, useState } from "react";
 
 type Variant = "outline" | "filled";
+type GeneratorMode = "tailwind" | "css" | "bootstrap";
 
-const SelectPlayground: React.FC = () => {
+interface SelectPlaygroundProps {
+  mode?: GeneratorMode;
+}
+
+const SelectPlayground: React.FC<SelectPlaygroundProps> = ({ mode = "tailwind" }) => {
   const [label, setLabel] = useState("Select option");
   const [variant, setVariant] = useState<Variant>("outline");
   const [options, setOptions] = useState("Option 1, Option 2, Option 3");
@@ -41,11 +46,38 @@ ${optionsMarkup}
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(codeSnippet);
+      await navigator.clipboard.writeText(activeSnippet);
     } catch {
       // ignore
     }
   };
+
+  const cssSnippet = `.custom-select {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid ${variant === "filled" ? "transparent" : "#d1d5db"};
+  background: ${variant === "filled" ? "#f3f4f6" : "transparent"};
+}`;
+
+  const htmlSnippet = `<label>${label}</label>
+<select class="custom-select">
+${parsedOptions.map((o) => `  <option value="${o}">${o}</option>`).join("\n")}
+</select>`;
+
+  const bootstrapSnippet = `<div class="mb-3">
+  <label class="form-label">${label}</label>
+  <select class="form-select">
+${parsedOptions.map((o) => `    <option value="${o}">${o}</option>`).join("\n")}
+  </select>
+</div>`;
+
+  const activeSnippet =
+    mode === "tailwind" ? codeSnippet : mode === "css" ? `${cssSnippet}\n\n${htmlSnippet}` : bootstrapSnippet;
+  const snippetTitle =
+    mode === "tailwind" ? "JSX Snippet" : mode === "css" ? "Plain CSS + HTML" : "Bootstrap Markup";
+  const copyLabel =
+    mode === "tailwind" ? "Copy JSX" : mode === "css" ? "Copy HTML & CSS" : "Copy Bootstrap";
 
   return (
     <section className="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -109,18 +141,18 @@ ${optionsMarkup}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                JSX Snippet
+                {snippetTitle}
               </span>
               <button
                 type="button"
                 onClick={handleCopy}
                 className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
               >
-                Copy
+                {copyLabel}
               </button>
             </div>
             <pre className="max-h-52 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{codeSnippet}</code>
+              <code>{activeSnippet}</code>
             </pre>
           </div>
         </div>

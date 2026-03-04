@@ -13,15 +13,15 @@ const ECommerce: React.FC = () => {
     console.log("Card clicked:", title);
 
     if (title == "CSS Generators") {
-      router.push('/Generator');
+      router.push("/ui/buttons?mode=css");
     } else if (title == "HTML Generators") {
-      router.push('/calendar');
+      router.push("/calendar");
     } else if (title == "Tailwind CSS Generator") {
-      router.push('/ui/buttons');
+      router.push("/ui/buttons?mode=tailwind");
     } else if (title == "Bootstrap Generator") {
-      router.push('/ui/alerts');
+      router.push("/ui/buttons?mode=bootstrap");
     } else {
-      router.push('/404');
+      router.push("/404");
     }
   };
 

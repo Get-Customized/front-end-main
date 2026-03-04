@@ -3,8 +3,15 @@
 import React, { useMemo, useState } from "react";
 
 type Shadow = "none" | "sm" | "lg";
+type GeneratorMode = "tailwind" | "css" | "bootstrap";
 
-const ContainerPlayground: React.FC = () => {
+interface ContainerPlaygroundProps {
+  mode?: GeneratorMode;
+}
+
+const ContainerPlayground: React.FC<ContainerPlaygroundProps> = ({
+  mode = "tailwind",
+}) => {
   const [padding, setPadding] = useState(24);
   const [shadow, setShadow] = useState<Shadow>("lg");
   const [rounded, setRounded] = useState(true);
@@ -101,6 +108,10 @@ const ContainerPlayground: React.FC = () => {
     }
   };
 
+  const isTailwindMode = mode === "tailwind";
+  const isCssMode = mode === "css";
+  const isBootstrapMode = mode === "bootstrap";
+
   return (
     <section className="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
@@ -162,62 +173,68 @@ const ContainerPlayground: React.FC = () => {
             </label>
           </div>
 
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                JSX Snippet
-              </span>
-              <button
-                type="button"
-                onClick={() => copyToClipboard(jsxSnippet)}
-                className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
-              >
-                Copy JSX
-              </button>
+          {isTailwindMode && (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                  JSX Snippet
+                </span>
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard(jsxSnippet)}
+                  className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+                >
+                  Copy JSX
+                </button>
+              </div>
+              <pre className="max-h-40 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+                <code>{jsxSnippet}</code>
+              </pre>
             </div>
-            <pre className="max-h-40 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{jsxSnippet}</code>
-            </pre>
-          </div>
+          )}
 
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                Plain CSS + HTML
-              </span>
-              <button
-                type="button"
-                onClick={() => copyToClipboard(`${cssSnippet}\n\n${htmlSnippet}`)}
-                className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
-              >
-                Copy HTML &amp; CSS
-              </button>
+          {isCssMode && (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                  Plain CSS + HTML
+                </span>
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard(`${cssSnippet}\n\n${htmlSnippet}`)}
+                  className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+                >
+                  Copy HTML &amp; CSS
+                </button>
+              </div>
+              <pre className="max-h-40 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+                <code>{cssSnippet}</code>
+              </pre>
+              <pre className="max-h-32 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+                <code>{htmlSnippet}</code>
+              </pre>
             </div>
-            <pre className="max-h-40 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{cssSnippet}</code>
-            </pre>
-            <pre className="max-h-32 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{htmlSnippet}</code>
-            </pre>
-          </div>
+          )}
 
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                Bootstrap Markup
-              </span>
-              <button
-                type="button"
-                onClick={() => copyToClipboard(bootstrapSnippet)}
-                className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
-              >
-                Copy Bootstrap
-              </button>
+          {isBootstrapMode && (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                  Bootstrap Markup
+                </span>
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard(bootstrapSnippet)}
+                  className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+                >
+                  Copy Bootstrap
+                </button>
+              </div>
+              <pre className="max-h-32 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+                <code>{bootstrapSnippet}</code>
+              </pre>
             </div>
-            <pre className="max-h-32 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{bootstrapSnippet}</code>
-            </pre>
-          </div>
+          )}
         </div>
       </div>
     </section>

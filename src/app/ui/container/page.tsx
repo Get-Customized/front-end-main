@@ -3,17 +3,27 @@ import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import ContainerPlayground from "@/components/Playgrounds/ContainerPlayground";
 
+type GeneratorMode = "tailwind" | "css" | "bootstrap";
+
 export const metadata: Metadata = {
   title: "Code Customizer",
   description:
     "Streamline your development process and build visually stunning websites with our intuitive and customizable code generator tool.",
 };
 
-const ContainerPage = () => {
+const ContainerPage = ({
+  searchParams,
+}: {
+  searchParams?: { mode?: string };
+}) => {
+  const rawMode = searchParams?.mode;
+  const mode: GeneratorMode =
+    rawMode === "css" || rawMode === "bootstrap" ? rawMode : "tailwind";
+
   return (
     <DefaultLayout>
       <Breadcrumb pageName="Container" />
-      <ContainerPlayground />
+      <ContainerPlayground mode={mode} />
     </DefaultLayout>
   );
 };

@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 interface SidebarDropdownProps {
   item: any;
@@ -20,6 +20,17 @@ const SidebarDropdown: React.FC<SidebarDropdownProps> = ({
   setOpenSubMenu,
 }) => {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const mode = searchParams.get("mode");
+
+  const shouldCarryMode = (route: string) => route.startsWith("/ui/");
+
+  const getHref = (route: string) => {
+    if (!mode || !shouldCarryMode(route)) {
+      return route;
+    }
+    return `${route}?mode=${mode}`;
+  };
 
   const handleSubItemClick = (e: React.MouseEvent, subItem: any) => {
     const updatedPageName =
@@ -40,50 +51,53 @@ const SidebarDropdown: React.FC<SidebarDropdownProps> = ({
     }
     return false;
   };
-
-  const isItemActive = isActive(item);
-
   return (
     <ul className="mt-2 flex flex-col gap-2.5 pl-6 transition-all duration-300 ease-in-out">
-      {item.map((subItem: any, index: number) => (
-        <li key={index}>
-          <Link
-            href={subItem.route}
-            onClick={(e) => handleSubItemClick(e, subItem)}
-            className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
-              isItemActive ? "text-white" : ""
-            }`}
-          >
-            {subItem.label}
-            {subItem.children && (
-              <MdKeyboardArrowDown
-                className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-[20px] transition-transform duration-300 ease-in-out ${
-                  openSubMenu === subItem.label && "rotate-180"
-                }`}
-              />
-            )}
-          </Link>
+      {item.map((subItem: any, index: number) => {
+        const isSubItemActive = isActive(subItem);
 
-          {subItem.children && (
-            <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                openSubMenu === subItem.label ? "max-h-screen" : "max-h-0"
+        return (
+          <li key={index}>
+            <Link
+              href={getHref(subItem.route)}
+              onClick={(e) => handleSubItemClick(e, subItem)}
+              className={`group relative flex items-center gap-2.5 rounded-md px-4 py-1.5 font-medium duration-300 ease-in-out ${
+                isSubItemActive
+                  ? "bg-primary/20 text-primary"
+                  : "text-bodydark2 hover:text-white"
               }`}
-              style={{
-                maxHeight: openSubMenu === subItem.label ? "500px" : "0",
-              }}
             >
-              <SidebarDropdown
-                item={subItem.children}
-                pageName={pageName}
-                setPageName={setPageName}
-                openSubMenu={openSubMenu}
-                setOpenSubMenu={setOpenSubMenu}
-              />
-            </div>
-          )}
-        </li>
-      ))}
+              {subItem.label}
+              {subItem.children && (
+                <MdKeyboardArrowDown
+                  className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-[20px] transition-transform duration-300 ease-in-out ${
+                    openSubMenu === subItem.label && "rotate-180"
+                  }`}
+                />
+              )}
+            </Link>
+
+            {subItem.children && (
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  openSubMenu === subItem.label ? "max-h-screen" : "max-h-0"
+                }`}
+                style={{
+                  maxHeight: openSubMenu === subItem.label ? "500px" : "0",
+                }}
+              >
+                <SidebarDropdown
+                  item={subItem.children}
+                  pageName={pageName}
+                  setPageName={setPageName}
+                  openSubMenu={openSubMenu}
+                  setOpenSubMenu={setOpenSubMenu}
+                />
+              </div>
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 };

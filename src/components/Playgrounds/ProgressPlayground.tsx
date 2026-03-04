@@ -3,8 +3,13 @@
 import React, { useMemo, useState } from "react";
 
 type Color = "primary" | "success" | "warning";
+type GeneratorMode = "tailwind" | "css" | "bootstrap";
 
-const ProgressPlayground: React.FC = () => {
+interface ProgressPlaygroundProps {
+  mode?: GeneratorMode;
+}
+
+const ProgressPlayground: React.FC<ProgressPlaygroundProps> = ({ mode = "tailwind" }) => {
   const [value, setValue] = useState(60);
   const [color, setColor] = useState<Color>("primary");
   const [showLabel, setShowLabel] = useState(true);
@@ -32,11 +37,46 @@ ${showLabel ? `<p className="mt-2 text-xs text-gray-600 dark:text-gray-300">${va
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(codeSnippet);
+      await navigator.clipboard.writeText(activeSnippet);
     } catch {
       // ignore
     }
   };
+
+  const colorHex =
+    color === "primary" ? "#3C50E0" : color === "success" ? "#34D399" : "#FBBF24";
+  const bootstrapColor =
+    color === "primary" ? "primary" : color === "success" ? "success" : "warning";
+
+  const cssSnippet = `.progress-track {
+  width: 100%;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.progress-fill {
+  height: 0.5rem;
+  width: ${value}%;
+  border-radius: 999px;
+  background: ${colorHex};
+}`;
+
+  const htmlSnippet = `<div class="progress-track">
+  <div class="progress-fill"></div>
+</div>${showLabel ? `\n<p>${value}% complete</p>` : ""}`;
+
+  const bootstrapSnippet = `<div class="progress">
+  <div class="progress-bar bg-${bootstrapColor}" role="progressbar" style="width: ${value}%">
+    ${showLabel ? `${value}%` : ""}
+  </div>
+</div>`;
+
+  const activeSnippet =
+    mode === "tailwind" ? codeSnippet : mode === "css" ? `${cssSnippet}\n\n${htmlSnippet}` : bootstrapSnippet;
+  const snippetTitle =
+    mode === "tailwind" ? "JSX Snippet" : mode === "css" ? "Plain CSS + HTML" : "Bootstrap Markup";
+  const copyLabel =
+    mode === "tailwind" ? "Copy JSX" : mode === "css" ? "Copy HTML & CSS" : "Copy Bootstrap";
 
   return (
     <section className="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -98,18 +138,18 @@ ${showLabel ? `<p className="mt-2 text-xs text-gray-600 dark:text-gray-300">${va
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                JSX Snippet
+                {snippetTitle}
               </span>
               <button
                 type="button"
                 onClick={handleCopy}
                 className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
               >
-                Copy
+                {copyLabel}
               </button>
             </div>
             <pre className="max-h-52 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-xs text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-              <code>{codeSnippet}</code>
+              <code>{activeSnippet}</code>
             </pre>
           </div>
         </div>
