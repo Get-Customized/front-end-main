@@ -110,7 +110,7 @@ const Profile = () => {
                 Junaid Azhar
               </h3>
               <p className="font-medium">Software Engineer</p>
-              <div className="mx-auto mb-5.5 mt-4.5 grid max-w-94 grid-cols-3 rounded-md border border-stroke py-2.5 shadow-1 dark:border-strokedark dark:bg-[#37404F]">
+              {/* <div className="mx-auto mb-5.5 mt-4.5 grid max-w-94 grid-cols-3 rounded-md border border-stroke py-2.5 shadow-1 dark:border-strokedark dark:bg-[#37404F]">
                 <div className="flex flex-col items-center justify-center gap-1 border-r border-stroke px-4 dark:border-strokedark xsm:flex-row">
                   <span className="font-semibold text-black dark:text-white">
                     259
@@ -129,7 +129,7 @@ const Profile = () => {
                   </span>
                   <span className="text-sm">Following</span>
                 </div>
-              </div>
+              </div> */}
 
               <div className="mx-auto max-w-180">
                 <h4 className="font-semibold text-black dark:text-white">
@@ -147,36 +147,36 @@ const Profile = () => {
                   Follow me on
                 </h4>
                 <div className="flex items-center justify-center gap-3.5">
-                  <Link
+                  {/* <Link
                     href="#"
                     className="hover:text-[#3b5998]"
                     aria-label="Facebook"
                   >
                     <FaFacebookF className="text-[22px]" />
-                  </Link>
-                  <Link
+                  </Link> */}
+                  {/* <Link
                     href="#"
                     className="hover:text-[#1da1f2]"
                     aria-label="Twitter"
                   >
                     <FaTwitter className="text-[24px]" />
-                  </Link>
+                  </Link> */}
                   <Link
-                    href="#"
+                    href="https://www.linkedin.com/in/m-junaid-bb848a29a"
                     className="hover:text-[#0077b5]"
                     aria-label="LinkedIn"
                   >
                     <FaLinkedinIn className="text-[24px]" />
                   </Link>
                   <Link
-                    href="#"
+                    href="https://stackoverflow.com/users/22285621/m-junaid"
                     className="hover:text-[#f48024]"
                     aria-label="Stack Overflow"
                   >
                     <FaStackOverflow className="text-[24px]" />
                   </Link>
                   <Link
-                    href="#"
+                    href="https://github.com/junaid042"
                     className="hover:text-[#333] dark:text-white"
                     aria-label="GitHub"
                   >
