@@ -83,16 +83,25 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
       <aside
-        className={`fixed left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden border-r border-stroke bg-white duration-300 ease-linear dark:border-strokedark dark:bg-boxdark lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
-        <div className="flex items-center text-2xl font-bold text-white text-nowrap justify-between gap-2 px-2 py-5.5 lg:py-6.5">
+        <div className="flex items-center text-2xl font-bold text-black text-nowrap justify-between gap-2 px-2 py-5.5 dark:text-white lg:py-6.5">
           <Link href="/" className="flex flex-row">
             <Image
               width={200}
               height={200}
-              src={"/images/logo/codecutsomizer-white.png"}
-              alt="Logo"
+              src={"/images/logo/codecutsomizer-dark.png"}
+              alt="Logo Light"
               priority
+              className="dark:hidden"
+            />
+            <Image
+              width={200}
+              height={200}
+              src={"/images/logo/codecutsomizer-white.png"}
+              alt="Logo Dark"
+              priority
+              className="hidden dark:block"
             />
           </Link>
 
@@ -109,7 +118,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           <nav className="mt-5 px-4 py-4 lg:mt-9 lg:px-4">
             {menuGroups.map((group, groupIndex) => (
               <div key={groupIndex}>
-                <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
+                <h3 className="mb-4 ml-4 text-sm font-semibold text-body dark:text-bodydark2">
                   {group.name}
                 </h3>
 

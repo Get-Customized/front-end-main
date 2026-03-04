@@ -56,9 +56,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       <Link
         href={item.route}
         onClick={handleClick}
-        className={`${isItemActive ? "bg-graydark dark:bg-meta-4" : ""}
+        className={`${isItemActive ? "bg-gray text-black dark:bg-meta-4 dark:text-white" : ""}
           ${isHighlighted ? "bg-yellow-500 text-black" : ""}
-          group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
+          group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-body duration-300 ease-in-out hover:bg-gray hover:text-black dark:text-bodydark1 dark:hover:bg-meta-4 dark:hover:text-white`}
       >
         {item.icon}
         {item.label}
