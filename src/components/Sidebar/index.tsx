@@ -19,6 +19,12 @@ interface SidebarProps {
   setSidebarOpen: (arg: boolean) => void;
 }
 
+const getOpenMenuFromPath = (pathname: string): string | null => {
+  if (pathname.startsWith("/ui/")) return "UI Elements";
+  if (pathname.startsWith("/auth/")) return "Authentication";
+  return null;
+};
+
 const menuGroups: any[] = [
   {
     name: "OTHERS",
@@ -62,20 +68,17 @@ const menuGroups: any[] = [
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const pathname = usePathname();
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
-  const [openMainMenu, setOpenMainMenu] = React.useState<string | null>(null);
+  const [openMainMenu, setOpenMainMenu] = React.useState<string | null>(() =>
+    getOpenMenuFromPath(pathname),
+  );
   const [openSubMenu, setOpenSubMenu] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    if (pathname.startsWith("/ui/")) {
-      setOpenMainMenu("UI Elements");
-      return;
+    const menuFromPath = getOpenMenuFromPath(pathname);
+    if (menuFromPath && menuFromPath !== openMainMenu) {
+      setOpenMainMenu(menuFromPath);
     }
-
-    if (pathname.startsWith("/auth/")) {
-      setOpenMainMenu("Authentication");
-      return;
-    }
-  }, [pathname]);
+  }, [openMainMenu, pathname]);
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
