@@ -64,7 +64,7 @@ const SidebarDropdown: React.FC<SidebarDropdownProps> = ({
               className={`group relative flex items-center gap-2.5 rounded-md px-4 py-1.5 font-medium duration-300 ease-in-out ${
                 isSubItemActive
                   ? "bg-primary/20 text-primary"
-                  : "text-bodydark2 hover:text-white"
+                  : "text-body hover:text-black dark:text-bodydark2 dark:hover:text-white"
               }`}
             >
               {subItem.label}
