@@ -24,6 +24,37 @@ const TextareaPage = ({
     <DefaultLayout>
       <Breadcrumb pageName="Textarea" />
       <TextareaPlayground mode={mode} />
+
+      <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Textarea Samples
+          </h3>
+        </div>
+        <div className="space-y-6 p-4 md:p-6 xl:p-9">
+          <div>
+            <p className="mb-3 font-medium text-black dark:text-white">
+              Basic Textarea
+            </p>
+            <textarea
+              rows={4}
+              placeholder="Write your message..."
+              className="w-full rounded-md border border-stroke bg-transparent px-4 py-3 text-black outline-none focus:border-primary dark:border-strokedark dark:text-white"
+            ></textarea>
+          </div>
+          <div>
+            <p className="mb-3 font-medium text-black dark:text-white">
+              Textarea With Character Hint
+            </p>
+            <textarea
+              rows={5}
+              placeholder="Add your feedback..."
+              className="w-full rounded-md border border-stroke bg-gray px-4 py-3 text-black outline-none focus:border-primary dark:border-strokedark dark:bg-meta-4 dark:text-white"
+            ></textarea>
+            <p className="mt-2 text-sm text-body">0 / 300 characters</p>
+          </div>
+        </div>
+      </div>
     </DefaultLayout>
   );
 };

@@ -24,6 +24,37 @@ const SelectPage = ({
     <DefaultLayout>
       <Breadcrumb pageName="Select" />
       <SelectPlayground mode={mode} />
+
+      <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Select Samples
+          </h3>
+        </div>
+        <div className="space-y-6 p-4 md:p-6 xl:p-9">
+          <div>
+            <p className="mb-3 font-medium text-black dark:text-white">
+              Single Select
+            </p>
+            <select className="w-full rounded-md border border-stroke bg-transparent px-4 py-3 text-black outline-none focus:border-primary dark:border-strokedark dark:text-white">
+              <option>Choose a country</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>Pakistan</option>
+            </select>
+          </div>
+          <div>
+            <p className="mb-3 font-medium text-black dark:text-white">
+              Select With Status
+            </p>
+            <select className="w-full rounded-md border border-success bg-success bg-opacity-10 px-4 py-3 text-black outline-none dark:text-white">
+              <option>Completed</option>
+              <option>In Progress</option>
+              <option>Pending</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </DefaultLayout>
   );
 };

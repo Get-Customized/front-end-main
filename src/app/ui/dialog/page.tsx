@@ -24,6 +24,44 @@ const DialogPage = ({
     <DefaultLayout>
       <Breadcrumb pageName="Dialog" />
       <DialogPlayground mode={mode} />
+
+      <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Dialog Samples
+          </h3>
+        </div>
+        <div className="space-y-6 p-4 md:p-6 xl:p-9">
+          <div className="rounded-md border border-stroke p-5 dark:border-strokedark">
+            <p className="mb-3 font-medium text-black dark:text-white">
+              Confirmation Dialog
+            </p>
+            <div className="rounded-md bg-gray p-4 dark:bg-meta-4">
+              <p className="text-sm text-body">
+                Are you sure you want to delete this item?
+              </p>
+              <div className="mt-4 flex gap-3">
+                <button className="rounded bg-danger px-4 py-2 text-sm font-medium text-white">
+                  Delete
+                </button>
+                <button className="rounded border border-stroke px-4 py-2 text-sm font-medium text-black dark:border-strokedark dark:text-white">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="rounded-md border border-stroke p-5 dark:border-strokedark">
+            <p className="mb-3 font-medium text-black dark:text-white">
+              Info Dialog
+            </p>
+            <div className="rounded-md border-l-4 border-primary bg-primary bg-opacity-10 p-4">
+              <p className="text-sm text-body">
+                Your changes have been saved successfully.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </DefaultLayout>
   );
 };
