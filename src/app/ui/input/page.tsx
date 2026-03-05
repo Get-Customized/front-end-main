@@ -67,35 +67,153 @@ const InputPage = ({
           </h3>
         </div>
         <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
-          {[
-            "Email Address",
-            "Password",
-            "Company Name",
-            "Phone Number",
-            "Website",
-            "Coupon Code",
-            "Search Query",
-            "Tracking ID",
-            "Bank Account",
-            "Referral Tag",
-          ].map((label, index) => (
-            <div key={index}>
-              <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                {label}
-              </label>
+          <div>
+            <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+              Classic Outlined
+            </label>
+            <input
+              type="text"
+              placeholder="John Carter"
+              className="w-full rounded-md border border-stroke bg-transparent px-4 py-2.5 text-sm text-black outline-none focus:border-primary dark:border-strokedark dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+              Soft Filled
+            </label>
+            <input
+              type="text"
+              placeholder="hello@company.com"
+              className="w-full rounded-md border border-transparent bg-gray px-4 py-2.5 text-sm text-black outline-none focus:border-primary dark:bg-meta-4 dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+              Underline Input
+            </label>
+            <input
+              type="text"
+              placeholder="Search article..."
+              className="w-full border-b-2 border-stroke bg-transparent px-1 py-2.5 text-sm text-black outline-none focus:border-primary dark:border-strokedark dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+              Rounded Pill
+            </label>
+            <input
+              type="text"
+              placeholder="Invite by email"
+              className="w-full rounded-full border border-stroke bg-transparent px-5 py-2.5 text-sm text-black outline-none focus:border-primary dark:border-strokedark dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+              Leading Icon
+            </label>
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-body">
+                @
+              </span>
               <input
-                type={label === "Password" ? "password" : "text"}
-                placeholder={`Enter ${label.toLowerCase()}`}
-                className={`w-full rounded-md border px-4 py-2.5 text-sm text-black outline-none dark:text-white ${
-                  index % 3 === 0
-                    ? "border-primary bg-primary bg-opacity-5"
-                    : index % 3 === 1
-                      ? "border-meta-3 bg-meta-3 bg-opacity-5"
-                      : "border-stroke bg-transparent dark:border-strokedark"
-                }`}
+                type="text"
+                placeholder="username"
+                className="w-full rounded-md border border-stroke bg-transparent py-2.5 pl-9 pr-4 text-sm text-black outline-none focus:border-primary dark:border-strokedark dark:text-white"
               />
             </div>
-          ))}
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+              Prefix + Suffix
+            </label>
+            <div className="flex overflow-hidden rounded-md border border-stroke dark:border-strokedark">
+              <span className="bg-gray px-3 py-2.5 text-sm text-body dark:bg-meta-4">
+                $
+              </span>
+              <input
+                type="text"
+                placeholder="0.00"
+                className="w-full bg-transparent px-3 py-2.5 text-sm text-black outline-none dark:text-white"
+              />
+              <span className="bg-gray px-3 py-2.5 text-sm text-body dark:bg-meta-4">
+                USD
+              </span>
+            </div>
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+              Success State
+            </label>
+            <input
+              type="text"
+              defaultValue="verified@site.com"
+              className="w-full rounded-md border border-success bg-success bg-opacity-5 px-4 py-2.5 text-sm text-black outline-none dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+              Error State
+            </label>
+            <input
+              type="text"
+              defaultValue="wrong@email"
+              className="w-full rounded-md border border-danger bg-danger bg-opacity-5 px-4 py-2.5 text-sm text-black outline-none dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+              Disabled
+            </label>
+            <input
+              type="text"
+              disabled
+              value="Readonly value"
+              className="w-full cursor-not-allowed rounded-md border border-stroke bg-gray px-4 py-2.5 text-sm text-body outline-none dark:border-strokedark dark:bg-meta-4"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+              Dashed Border
+            </label>
+            <input
+              type="text"
+              placeholder="Paste API key"
+              className="w-full rounded-md border-2 border-dashed border-meta-3 bg-transparent px-4 py-2.5 text-sm text-black outline-none dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+              Shadow Focus
+            </label>
+            <input
+              type="text"
+              placeholder="Type and focus"
+              className="w-full rounded-md border border-stroke bg-white px-4 py-2.5 text-sm text-black shadow-sm outline-none focus:shadow-md dark:border-strokedark dark:bg-boxdark dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+              Gradient Border
+            </label>
+            <div className="rounded-md bg-gradient-to-r from-primary to-meta-3 p-[1px]">
+              <input
+                type="text"
+                placeholder="custom-domain.com"
+                className="w-full rounded-md bg-white px-4 py-2.5 text-sm text-black outline-none dark:bg-boxdark dark:text-white"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </DefaultLayout>
