@@ -58,25 +58,16 @@ const HeadingPage = ({
           </h3>
         </div>
         <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
-          {[
-            "Launch Dashboard",
-            "Weekly Analytics",
-            "Conversion Overview",
-            "Meet The Team",
-            "Pricing Snapshot",
-            "Latest Announcements",
-            "Growth Milestones",
-            "Product Roadmap",
-            "Customer Stories",
-            "Support Center",
-          ].map((title, index) => (
-            <div key={index} className="rounded-md border border-stroke p-4 dark:border-strokedark">
-              <h4 className={`font-semibold ${index % 2 === 0 ? "text-xl" : "text-2xl"} text-black dark:text-white`}>
-                {title}
-              </h4>
-              <p className="mt-2 text-sm text-body">Heading variant #{index + 1}</p>
-            </div>
-          ))}
+          <div className="rounded-md border border-stroke p-4 dark:border-strokedark"><h2 className="text-2xl font-bold text-black dark:text-white">Bold Display</h2></div>
+          <div className="rounded-md border border-stroke p-4 dark:border-strokedark"><h2 className="text-2xl font-light text-black dark:text-white">Light Editorial</h2></div>
+          <div className="rounded-md border border-stroke p-4 dark:border-strokedark"><h2 className="text-xl font-semibold uppercase tracking-widest text-black dark:text-white">Uppercase Tracker</h2></div>
+          <div className="rounded-md border border-stroke p-4 dark:border-strokedark"><h2 className="text-2xl font-black italic text-black dark:text-white">Italic Hero</h2></div>
+          <div className="rounded-md border border-primary bg-primary bg-opacity-10 p-4"><h2 className="text-2xl font-bold text-black dark:text-white">Accent Panel Title</h2></div>
+          <div className="rounded-md border-l-4 border-meta-3 p-4"><h2 className="text-xl font-semibold text-black dark:text-white">Left Rail Heading</h2></div>
+          <div className="rounded-md border-b-2 border-stroke p-4 dark:border-strokedark"><h2 className="text-xl font-semibold text-black dark:text-white">Bottom Line Heading</h2></div>
+          <div className="rounded-md bg-gradient-to-r from-primary to-meta-3 p-4"><h2 className="text-2xl font-bold text-white">Gradient Banner</h2></div>
+          <div className="rounded-md border border-dashed border-meta-3 p-4"><h2 className="text-xl font-semibold text-black dark:text-white">Dashed Frame Title</h2></div>
+          <div className="rounded-md border border-stroke p-4 shadow dark:border-strokedark"><h2 className="text-2xl font-semibold text-black dark:text-white">Shadow Card Heading</h2></div>
         </div>
       </div>
     </DefaultLayout>

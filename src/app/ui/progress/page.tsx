@@ -66,31 +66,16 @@ const ProgressPage = ({
           </h3>
         </div>
         <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
-          {[
-            { label: "Profile Setup", width: "w-1/5" },
-            { label: "Content Draft", width: "w-1/3" },
-            { label: "Checkout Flow", width: "w-2/5" },
-            { label: "Upload Queue", width: "w-1/2" },
-            { label: "Campaign Build", width: "w-3/5" },
-            { label: "QA Review", width: "w-2/3" },
-            { label: "Data Sync", width: "w-3/4" },
-            { label: "Deployment", width: "w-4/5" },
-            { label: "Backup Process", width: "w-11/12" },
-            { label: "Completed", width: "w-full" },
-          ].map((item, index) => (
-            <div key={index} className="rounded-md border border-stroke p-4 dark:border-strokedark">
-              <p className="mb-2 text-sm font-medium text-black dark:text-white">
-                {item.label}
-              </p>
-              <div className="h-2.5 rounded-full bg-gray dark:bg-meta-4">
-                <div
-                  className={`h-2.5 rounded-full ${
-                    index % 3 === 0 ? "bg-primary" : index % 3 === 1 ? "bg-warning" : "bg-success"
-                  } ${item.width}`}
-                ></div>
-              </div>
-            </div>
-          ))}
+          <div className="rounded-md border border-stroke p-4 dark:border-strokedark"><p className="mb-2 text-sm font-medium text-black dark:text-white">Primary Bar</p><div className="h-2.5 rounded-full bg-gray dark:bg-meta-4"><div className="h-2.5 w-2/3 rounded-full bg-primary"></div></div></div>
+          <div className="rounded-md border border-success p-4"><p className="mb-2 text-sm font-medium text-black dark:text-white">Success Bar</p><div className="h-2.5 rounded-full bg-success bg-opacity-20"><div className="h-2.5 w-3/4 rounded-full bg-success"></div></div></div>
+          <div className="rounded-md border border-warning p-4"><p className="mb-2 text-sm font-medium text-black dark:text-white">Warning Bar</p><div className="h-2.5 rounded-full bg-warning bg-opacity-20"><div className="h-2.5 w-1/2 rounded-full bg-warning"></div></div></div>
+          <div className="rounded-md border border-danger p-4"><p className="mb-2 text-sm font-medium text-black dark:text-white">Danger Bar</p><div className="h-2.5 rounded-full bg-danger bg-opacity-20"><div className="h-2.5 w-1/3 rounded-full bg-danger"></div></div></div>
+          <div className="rounded-md border border-stroke p-4 dark:border-strokedark"><p className="mb-2 text-sm font-medium text-black dark:text-white">Pill Progress</p><div className="h-3 rounded-full bg-gray p-0.5 dark:bg-meta-4"><div className="h-full w-4/5 rounded-full bg-meta-3"></div></div></div>
+          <div className="rounded-md border border-stroke p-4 dark:border-strokedark"><p className="mb-2 text-sm font-medium text-black dark:text-white">Striped Look</p><div className="h-2.5 rounded-full bg-gray dark:bg-meta-4"><div className="h-2.5 w-3/5 rounded-full bg-black"></div></div></div>
+          <div className="rounded-md border border-stroke p-4 dark:border-strokedark"><p className="mb-2 text-sm font-medium text-black dark:text-white">Thin Line</p><div className="h-1.5 rounded-full bg-gray dark:bg-meta-4"><div className="h-1.5 w-11/12 rounded-full bg-primary"></div></div></div>
+          <div className="rounded-md border border-stroke p-4 dark:border-strokedark"><p className="mb-2 text-sm font-medium text-black dark:text-white">Step Progress</p><div className="grid grid-cols-4 gap-1"><span className="h-2 rounded bg-primary"></span><span className="h-2 rounded bg-primary"></span><span className="h-2 rounded bg-primary"></span><span className="h-2 rounded bg-gray dark:bg-meta-4"></span></div></div>
+          <div className="rounded-md border border-stroke p-4 dark:border-strokedark"><p className="mb-2 text-sm font-medium text-black dark:text-white">Gradient Fill</p><div className="h-2.5 rounded-full bg-gray dark:bg-meta-4"><div className="h-2.5 w-2/3 rounded-full bg-gradient-to-r from-primary to-meta-3"></div></div></div>
+          <div className="rounded-md border border-dashed border-meta-3 p-4"><p className="mb-2 text-sm font-medium text-black dark:text-white">Dashed Track</p><div className="h-2.5 rounded-full border border-dashed border-meta-3"><div className="h-2.5 w-1/2 rounded-full bg-meta-3"></div></div></div>
         </div>
       </div>
     </DefaultLayout>
