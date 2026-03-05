@@ -61,6 +61,40 @@ const DropdownPage = ({
           </div>
         </div>
       </div>
+
+      <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Creative Dropdown Examples
+          </h3>
+        </div>
+        <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
+          {[
+            "Priority Selector",
+            "Team Switcher",
+            "Language Menu",
+            "Theme Picker",
+            "Sort Menu",
+            "Export Format",
+            "Country Code",
+            "Timezone Selector",
+            "Notification Frequency",
+            "Visibility Options",
+          ].map((title, index) => (
+            <div key={index} className="rounded-md border border-stroke p-4 dark:border-strokedark">
+              <p className="mb-2 font-medium text-black dark:text-white">{title}</p>
+              <div className="rounded-md border border-stroke px-3 py-2 text-sm text-body dark:border-strokedark">
+                Choose option
+              </div>
+              <div className="mt-2 space-y-1 rounded-md bg-gray p-2 dark:bg-meta-4">
+                <p className="rounded px-2 py-1 text-xs text-body">Option A</p>
+                <p className="rounded px-2 py-1 text-xs text-body">Option B</p>
+                <p className="rounded px-2 py-1 text-xs text-body">Option C</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </DefaultLayout>
   );
 };

@@ -62,6 +62,43 @@ const DialogPage = ({
           </div>
         </div>
       </div>
+
+      <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Creative Dialog Examples
+          </h3>
+        </div>
+        <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
+          {[
+            "Delete Account",
+            "Archive Project",
+            "Session Timeout",
+            "Unsaved Changes",
+            "Reset Filters",
+            "Publish Post",
+            "Transfer Ownership",
+            "Download Ready",
+            "Enable 2FA",
+            "Leave Workspace",
+          ].map((title, index) => (
+            <div key={index} className="rounded-md border border-stroke p-4 dark:border-strokedark">
+              <p className="font-medium text-black dark:text-white">{title}</p>
+              <p className="mt-2 text-sm text-body">
+                Confirm this action before continuing.
+              </p>
+              <div className="mt-4 flex gap-2">
+                <button className="rounded bg-primary px-3 py-1.5 text-xs font-medium text-white">
+                  Confirm
+                </button>
+                <button className="rounded border border-stroke px-3 py-1.5 text-xs font-medium text-black dark:border-strokedark dark:text-white">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </DefaultLayout>
   );
 };

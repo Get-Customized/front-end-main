@@ -54,6 +54,37 @@ const ListPage = ({
           </div>
         </div>
       </div>
+
+      <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Creative List Examples
+          </h3>
+        </div>
+        <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
+          {[
+            "Task Checklist",
+            "Onboarding Steps",
+            "Shopping List",
+            "Feature Backlog",
+            "Sprint Goals",
+            "Meeting Agenda",
+            "Travel Pack",
+            "Daily Habits",
+            "Bug Priorities",
+            "Reading Queue",
+          ].map((title, index) => (
+            <div key={index} className="rounded-md border border-stroke p-4 dark:border-strokedark">
+              <p className="mb-2 font-medium text-black dark:text-white">{title}</p>
+              <ul className="list-inside list-disc space-y-1 text-sm text-body">
+                <li>Item one</li>
+                <li>Item two</li>
+                <li>Item three</li>
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
     </DefaultLayout>
   );
 };

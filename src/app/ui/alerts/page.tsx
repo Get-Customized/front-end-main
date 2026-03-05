@@ -112,6 +112,50 @@ const Alerts = ({
           </div>
         </div>
       </div>
+
+      <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Creative Alert Examples
+          </h3>
+        </div>
+        <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
+          {[
+            { title: "Payment Pending", color: "warning", body: "Your invoice is awaiting confirmation." },
+            { title: "Profile Verified", color: "success", body: "Identity verification completed successfully." },
+            { title: "Storage Full", color: "danger", body: "You have reached 95% of your plan quota." },
+            { title: "Feature Preview", color: "primary", body: "A beta feature is enabled for your workspace." },
+            { title: "Draft Saved", color: "meta-3", body: "A backup copy was saved 2 minutes ago." },
+            { title: "Maintenance Window", color: "black", body: "Scheduled update starts tonight at 11:00 PM." },
+            { title: "New Login", color: "meta-5", body: "A new device logged into your account." },
+            { title: "Subscription Expiring", color: "warning", body: "Renew your plan to avoid interruptions." },
+            { title: "API Limit Reached", color: "danger", body: "Requests are temporarily throttled." },
+            { title: "Export Complete", color: "success", body: "Your report is ready to download." },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className={`rounded-md border-l-4 p-4 ${
+                item.color === "danger"
+                  ? "border-danger bg-danger bg-opacity-10"
+                  : item.color === "success"
+                    ? "border-success bg-success bg-opacity-10"
+                    : item.color === "warning"
+                      ? "border-warning bg-warning bg-opacity-10"
+                      : item.color === "black"
+                        ? "border-black bg-black bg-opacity-10"
+                        : item.color === "meta-3"
+                          ? "border-meta-3 bg-meta-3 bg-opacity-10"
+                          : item.color === "meta-5"
+                            ? "border-meta-5 bg-meta-5 bg-opacity-10"
+                            : "border-primary bg-primary bg-opacity-10"
+              }`}
+            >
+              <p className="font-medium text-black dark:text-white">{item.title}</p>
+              <p className="mt-1 text-sm text-body">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </DefaultLayout>
   );
 };

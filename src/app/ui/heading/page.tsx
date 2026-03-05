@@ -50,6 +50,35 @@ const HeadingPage = ({
           </div>
         </div>
       </div>
+
+      <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Creative Heading Examples
+          </h3>
+        </div>
+        <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
+          {[
+            "Launch Dashboard",
+            "Weekly Analytics",
+            "Conversion Overview",
+            "Meet The Team",
+            "Pricing Snapshot",
+            "Latest Announcements",
+            "Growth Milestones",
+            "Product Roadmap",
+            "Customer Stories",
+            "Support Center",
+          ].map((title, index) => (
+            <div key={index} className="rounded-md border border-stroke p-4 dark:border-strokedark">
+              <h4 className={`font-semibold ${index % 2 === 0 ? "text-xl" : "text-2xl"} text-black dark:text-white`}>
+                {title}
+              </h4>
+              <p className="mt-2 text-sm text-body">Heading variant #{index + 1}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </DefaultLayout>
   );
 };

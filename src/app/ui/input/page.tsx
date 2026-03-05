@@ -59,6 +59,45 @@ const InputPage = ({
           </div>
         </div>
       </div>
+
+      <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Creative Input Examples
+          </h3>
+        </div>
+        <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
+          {[
+            "Email Address",
+            "Password",
+            "Company Name",
+            "Phone Number",
+            "Website",
+            "Coupon Code",
+            "Search Query",
+            "Tracking ID",
+            "Bank Account",
+            "Referral Tag",
+          ].map((label, index) => (
+            <div key={index}>
+              <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+                {label}
+              </label>
+              <input
+                type={label === "Password" ? "password" : "text"}
+                placeholder={`Enter ${label.toLowerCase()}`}
+                className={`w-full rounded-md border px-4 py-2.5 text-sm text-black outline-none dark:text-white ${
+                  index % 3 === 0
+                    ? "border-primary bg-primary bg-opacity-5"
+                    : index % 3 === 1
+                      ? "border-meta-3 bg-meta-3 bg-opacity-5"
+                      : "border-stroke bg-transparent dark:border-strokedark"
+                }`}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </DefaultLayout>
   );
 };

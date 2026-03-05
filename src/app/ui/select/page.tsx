@@ -55,6 +55,46 @@ const SelectPage = ({
           </div>
         </div>
       </div>
+
+      <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Creative Select Examples
+          </h3>
+        </div>
+        <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
+          {[
+            "Country",
+            "Currency",
+            "Department",
+            "Role",
+            "Experience Level",
+            "Subscription Plan",
+            "Report Type",
+            "Delivery Slot",
+            "Language",
+            "Theme",
+          ].map((label, index) => (
+            <div key={index}>
+              <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+                {label}
+              </label>
+              <select
+                className={`w-full rounded-md border px-4 py-2.5 text-sm text-black outline-none dark:text-white ${
+                  index % 2 === 0
+                    ? "border-stroke bg-transparent dark:border-strokedark"
+                    : "border-primary bg-primary bg-opacity-5"
+                }`}
+              >
+                <option>Select {label.toLowerCase()}</option>
+                <option>Option A</option>
+                <option>Option B</option>
+                <option>Option C</option>
+              </select>
+            </div>
+          ))}
+        </div>
+      </div>
     </DefaultLayout>
   );
 };

@@ -50,6 +50,44 @@ const ContainerPage = ({
           </div>
         </div>
       </div>
+
+      <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Creative Container Examples
+          </h3>
+        </div>
+        <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
+          {[
+            "Hero Wrapper",
+            "Pricing Block",
+            "Profile Card Container",
+            "Dashboard Panel",
+            "Marketing Banner",
+            "FAQ Wrapper",
+            "Checkout Section",
+            "Timeline Frame",
+            "Feature Grid Container",
+            "Content Rail",
+          ].map((title, index) => (
+            <div
+              key={index}
+              className={`rounded-md border p-4 ${
+                index % 3 === 0
+                  ? "border-primary bg-primary bg-opacity-10"
+                  : index % 3 === 1
+                    ? "border-meta-3 bg-meta-3 bg-opacity-10"
+                    : "border-stroke bg-gray dark:border-strokedark dark:bg-meta-4"
+              }`}
+            >
+              <p className="font-medium text-black dark:text-white">{title}</p>
+              <div className="mt-3 h-2 w-full rounded-full bg-white/60 dark:bg-black/20"></div>
+              <div className="mt-2 h-2 w-3/4 rounded-full bg-white/60 dark:bg-black/20"></div>
+              <div className="mt-2 h-2 w-1/2 rounded-full bg-white/60 dark:bg-black/20"></div>
+            </div>
+          ))}
+        </div>
+      </div>
     </DefaultLayout>
   );
 };
