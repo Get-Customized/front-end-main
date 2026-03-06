@@ -484,6 +484,57 @@ const Buttons = ({
           </div>
         </div>
       </div>
+
+      <div className="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Creative Button Examples
+          </h3>
+        </div>
+        <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
+          {[
+            "Launch Project",
+            "Save Draft",
+            "Generate Report",
+            "Share Link",
+            "Start Trial",
+            "Request Access",
+            "Pay Invoice",
+            "Track Order",
+            "Open Settings",
+            "Invite Members",
+            "Sync Data",
+            "Download File",
+          ].map((label, index) => (
+            <Link
+              key={index}
+              href="#"
+              className={`inline-flex items-center justify-center rounded-md px-5 py-3 text-center text-sm font-medium transition ${
+                index % 4 === 0
+                  ? "bg-primary text-white hover:bg-opacity-90"
+                  : index % 4 === 1
+                    ? "border border-primary text-primary hover:bg-primary hover:text-white"
+                    : index % 4 === 2
+                      ? "rounded-full bg-meta-3 text-white hover:bg-opacity-90"
+                      : "bg-black text-white hover:bg-opacity-90"
+              }`}
+            >
+              {index % 3 === 0 && (
+                <svg
+                  className="mr-2 fill-current"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M7 0L8.9 5.1H14L9.6 8.2L11.5 14L7 10.6L2.5 14L4.4 8.2L0 5.1H5.1L7 0Z" />
+                </svg>
+              )}
+              {label}
+            </Link>
+          ))}
+        </div>
+      </div>
     </DefaultLayout>
   );
 };

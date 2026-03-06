@@ -112,6 +112,26 @@ const Alerts = ({
           </div>
         </div>
       </div>
+
+      <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
+          <h3 className="font-medium text-black dark:text-white">
+            Creative Alert Examples
+          </h3>
+        </div>
+        <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
+          <div className="rounded-md border-l-4 border-primary bg-primary bg-opacity-10 p-4"><p className="font-medium text-black dark:text-white">Info Rail</p><p className="mt-1 text-sm text-body">New feature is available in settings.</p></div>
+          <div className="rounded-md border border-success bg-success bg-opacity-10 p-4"><p className="font-medium text-black dark:text-white">Success Box</p><p className="mt-1 text-sm text-body">Changes have been applied successfully.</p></div>
+          <div className="rounded-md border border-danger bg-danger bg-opacity-10 p-4"><p className="font-medium text-black dark:text-white">Error Box</p><p className="mt-1 text-sm text-body">Payment failed. Try a different method.</p></div>
+          <div className="rounded-md border-t-4 border-warning bg-warning bg-opacity-10 p-4"><p className="font-medium text-black dark:text-white">Top Warning</p><p className="mt-1 text-sm text-body">Your session expires in 5 minutes.</p></div>
+          <div className="rounded-full border border-meta-3 bg-meta-3 bg-opacity-10 px-5 py-3"><p className="text-sm font-medium text-black dark:text-white">Rounded Pill Alert</p></div>
+          <div className="rounded-md border border-stroke p-4 shadow dark:border-strokedark"><p className="font-medium text-black dark:text-white">Shadow Notice</p><p className="mt-1 text-sm text-body">Backup completed at 11:32 PM.</p></div>
+          <div className="rounded-md border border-dashed border-meta-3 p-4"><p className="font-medium text-black dark:text-white">Dashed Alert</p><p className="mt-1 text-sm text-body">Draft mode is enabled for this page.</p></div>
+          <div className="rounded-md bg-black p-4 text-white"><p className="font-medium">Dark Alert</p><p className="mt-1 text-sm text-white/80">Server maintenance starts tonight.</p></div>
+          <div className="rounded-md bg-gradient-to-r from-primary to-meta-3 p-4 text-white"><p className="font-medium">Gradient Alert</p><p className="mt-1 text-sm text-white/90">Upgrade available for your workspace.</p></div>
+          <div className="flex items-start gap-3 rounded-md border border-stroke p-4 dark:border-strokedark"><span className="mt-0.5 rounded bg-primary px-2 py-0.5 text-xs text-white">NEW</span><div><p className="font-medium text-black dark:text-white">Tag Alert</p><p className="mt-1 text-sm text-body">A fresh template was added today.</p></div></div>
+        </div>
+      </div>
     </DefaultLayout>
   );
 };
