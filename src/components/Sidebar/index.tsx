@@ -74,11 +74,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const [openSubMenu, setOpenSubMenu] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    const menuFromPath = getOpenMenuFromPath(pathname);
-    if (menuFromPath && menuFromPath !== openMainMenu) {
-      setOpenMainMenu(menuFromPath);
-    }
-  }, [openMainMenu, pathname]);
+    setOpenMainMenu(getOpenMenuFromPath(pathname));
+    setOpenSubMenu(null);
+  }, [pathname]);
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
