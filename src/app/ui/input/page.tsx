@@ -2,6 +2,7 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import InputPlayground from "@/components/Playgrounds/InputPlayground";
+import InputSamplesCodePopup from "@/components/Samples/InputSamplesCodePopup";
 
 type GeneratorMode = "tailwind" | "css" | "bootstrap";
 
@@ -24,6 +25,7 @@ const InputPage = ({
     <DefaultLayout>
       <Breadcrumb pageName="Input" />
       <InputPlayground mode={mode} />
+      <InputSamplesCodePopup>
 
       <div className="mt-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
@@ -32,7 +34,7 @@ const InputPage = ({
           </h3>
         </div>
         <div className="space-y-6 p-4 md:p-6 xl:p-9">
-          <div>
+          <div className="input-sample-item">
             <p className="mb-3 font-medium text-black dark:text-white">
               Basic Text Input
             </p>
@@ -42,7 +44,7 @@ const InputPage = ({
               className="w-full rounded-md border border-stroke bg-transparent px-4 py-3 text-black outline-none focus:border-primary dark:border-strokedark dark:text-white"
             />
           </div>
-          <div>
+          <div className="input-sample-item">
             <p className="mb-3 font-medium text-black dark:text-white">
               Input With Prefix
             </p>
@@ -67,7 +69,7 @@ const InputPage = ({
           </h3>
         </div>
         <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
-          <div>
+          <div className="input-sample-item">
             <label className="mb-2 block text-sm font-medium text-black dark:text-white">
               Classic Outlined
             </label>
@@ -78,7 +80,7 @@ const InputPage = ({
             />
           </div>
 
-          <div>
+          <div className="input-sample-item">
             <label className="mb-2 block text-sm font-medium text-black dark:text-white">
               Soft Filled
             </label>
@@ -89,7 +91,7 @@ const InputPage = ({
             />
           </div>
 
-          <div>
+          <div className="input-sample-item">
             <label className="mb-2 block text-sm font-medium text-black dark:text-white">
               Underline Input
             </label>
@@ -100,7 +102,7 @@ const InputPage = ({
             />
           </div>
 
-          <div>
+          <div className="input-sample-item">
             <label className="mb-2 block text-sm font-medium text-black dark:text-white">
               Rounded Pill
             </label>
@@ -111,7 +113,7 @@ const InputPage = ({
             />
           </div>
 
-          <div>
+          <div className="input-sample-item">
             <label className="mb-2 block text-sm font-medium text-black dark:text-white">
               Leading Icon
             </label>
@@ -127,7 +129,7 @@ const InputPage = ({
             </div>
           </div>
 
-          <div>
+          <div className="input-sample-item">
             <label className="mb-2 block text-sm font-medium text-black dark:text-white">
               Prefix + Suffix
             </label>
@@ -146,7 +148,7 @@ const InputPage = ({
             </div>
           </div>
 
-          <div>
+          <div className="input-sample-item">
             <label className="mb-2 block text-sm font-medium text-black dark:text-white">
               Success State
             </label>
@@ -157,7 +159,7 @@ const InputPage = ({
             />
           </div>
 
-          <div>
+          <div className="input-sample-item">
             <label className="mb-2 block text-sm font-medium text-black dark:text-white">
               Error State
             </label>
@@ -168,7 +170,7 @@ const InputPage = ({
             />
           </div>
 
-          <div>
+          <div className="input-sample-item">
             <label className="mb-2 block text-sm font-medium text-black dark:text-white">
               Disabled
             </label>
@@ -180,7 +182,7 @@ const InputPage = ({
             />
           </div>
 
-          <div>
+          <div className="input-sample-item">
             <label className="mb-2 block text-sm font-medium text-black dark:text-white">
               Dashed Border
             </label>
@@ -191,7 +193,7 @@ const InputPage = ({
             />
           </div>
 
-          <div>
+          <div className="input-sample-item">
             <label className="mb-2 block text-sm font-medium text-black dark:text-white">
               Shadow Focus
             </label>
@@ -202,7 +204,7 @@ const InputPage = ({
             />
           </div>
 
-          <div>
+          <div className="input-sample-item">
             <label className="mb-2 block text-sm font-medium text-black dark:text-white">
               Gradient Border
             </label>
@@ -216,6 +218,7 @@ const InputPage = ({
           </div>
         </div>
       </div>
+      </InputSamplesCodePopup>
     </DefaultLayout>
   );
 };
