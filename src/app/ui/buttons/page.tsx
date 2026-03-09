@@ -3,7 +3,7 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import ButtonPlayground from "@/components/Playgrounds/ButtonPlayground";
-import ButtonSampleGallery from "@/components/Samples/ButtonSampleGallery";
+import ButtonSamplesCodePopup from "@/components/Samples/ButtonSamplesCodePopup";
 
 type GeneratorMode = "tailwind" | "css" | "bootstrap";
 
@@ -28,14 +28,7 @@ const Buttons = ({
 
       <ButtonPlayground mode={mode} />
 
-      <div className="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
-          <h3 className="font-medium text-black dark:text-white">
-            Button Samples (Code View)
-          </h3>
-        </div>
-        <ButtonSampleGallery />
-      </div>
+      <ButtonSamplesCodePopup>
 
       {/* <!-- Normal Button Items --> */}
       <div className="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -545,6 +538,7 @@ const Buttons = ({
           ))}
         </div>
       </div>
+      </ButtonSamplesCodePopup>
     </DefaultLayout>
   );
 };
