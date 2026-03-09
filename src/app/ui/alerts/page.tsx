@@ -2,6 +2,7 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import AlertPlayground from "@/components/Playgrounds/AlertPlayground";
+import AlertSamplesCodePopup from "@/components/Samples/AlertSamplesCodePopup";
 
 type GeneratorMode = "tailwind" | "css" | "bootstrap";
 
@@ -26,10 +27,11 @@ const Alerts = ({
 
       <AlertPlayground mode={mode} />
 
+      <AlertSamplesCodePopup>
       <div className="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark md:p-6 xl:p-9">
         <div className="flex flex-col gap-7.5">
           {/* <!-- Alerts Item --> */}
-          <div className="flex w-full border-l-6 border-warning bg-warning bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
+          <div className="alert-sample-item flex w-full border-l-6 border-warning bg-warning bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
             <div className="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-warning bg-opacity-30">
               <svg
                 width="19"
@@ -56,7 +58,7 @@ const Alerts = ({
             </div>
           </div>
           {/* <!-- Alerts Item --> */}
-          <div className="flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
+          <div className="alert-sample-item flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
             <div className="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#34D399]">
               <svg
                 width="16"
@@ -83,7 +85,7 @@ const Alerts = ({
             </div>
           </div>
           {/* <!-- Alerts Item --> */}
-          <div className="flex w-full border-l-6 border-[#F87171] bg-[#F87171] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
+          <div className="alert-sample-item flex w-full border-l-6 border-[#F87171] bg-[#F87171] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
             <div className="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#F87171]">
               <svg
                 width="13"
@@ -120,18 +122,19 @@ const Alerts = ({
           </h3>
         </div>
         <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-3 xl:p-9">
-          <div className="rounded-md border-l-4 border-primary bg-primary bg-opacity-10 p-4"><p className="font-medium text-black dark:text-white">Info Rail</p><p className="mt-1 text-sm text-body">New feature is available in settings.</p></div>
-          <div className="rounded-md border border-success bg-success bg-opacity-10 p-4"><p className="font-medium text-black dark:text-white">Success Box</p><p className="mt-1 text-sm text-body">Changes have been applied successfully.</p></div>
-          <div className="rounded-md border border-danger bg-danger bg-opacity-10 p-4"><p className="font-medium text-black dark:text-white">Error Box</p><p className="mt-1 text-sm text-body">Payment failed. Try a different method.</p></div>
-          <div className="rounded-md border-t-4 border-warning bg-warning bg-opacity-10 p-4"><p className="font-medium text-black dark:text-white">Top Warning</p><p className="mt-1 text-sm text-body">Your session expires in 5 minutes.</p></div>
-          <div className="rounded-full border border-meta-3 bg-meta-3 bg-opacity-10 px-5 py-3"><p className="text-sm font-medium text-black dark:text-white">Rounded Pill Alert</p></div>
-          <div className="rounded-md border border-stroke p-4 shadow dark:border-strokedark"><p className="font-medium text-black dark:text-white">Shadow Notice</p><p className="mt-1 text-sm text-body">Backup completed at 11:32 PM.</p></div>
-          <div className="rounded-md border border-dashed border-meta-3 p-4"><p className="font-medium text-black dark:text-white">Dashed Alert</p><p className="mt-1 text-sm text-body">Draft mode is enabled for this page.</p></div>
-          <div className="rounded-md bg-black p-4 text-white"><p className="font-medium">Dark Alert</p><p className="mt-1 text-sm text-white/80">Server maintenance starts tonight.</p></div>
-          <div className="rounded-md bg-gradient-to-r from-primary to-meta-3 p-4 text-white"><p className="font-medium">Gradient Alert</p><p className="mt-1 text-sm text-white/90">Upgrade available for your workspace.</p></div>
-          <div className="flex items-start gap-3 rounded-md border border-stroke p-4 dark:border-strokedark"><span className="mt-0.5 rounded bg-primary px-2 py-0.5 text-xs text-white">NEW</span><div><p className="font-medium text-black dark:text-white">Tag Alert</p><p className="mt-1 text-sm text-body">A fresh template was added today.</p></div></div>
+          <div className="alert-sample-item rounded-md border-l-4 border-primary bg-primary bg-opacity-10 p-4"><p className="font-medium text-black dark:text-white">Info Rail</p><p className="mt-1 text-sm text-body">New feature is available in settings.</p></div>
+          <div className="alert-sample-item rounded-md border border-success bg-success bg-opacity-10 p-4"><p className="font-medium text-black dark:text-white">Success Box</p><p className="mt-1 text-sm text-body">Changes have been applied successfully.</p></div>
+          <div className="alert-sample-item rounded-md border border-danger bg-danger bg-opacity-10 p-4"><p className="font-medium text-black dark:text-white">Error Box</p><p className="mt-1 text-sm text-body">Payment failed. Try a different method.</p></div>
+          <div className="alert-sample-item rounded-md border-t-4 border-warning bg-warning bg-opacity-10 p-4"><p className="font-medium text-black dark:text-white">Top Warning</p><p className="mt-1 text-sm text-body">Your session expires in 5 minutes.</p></div>
+          <div className="alert-sample-item rounded-full border border-meta-3 bg-meta-3 bg-opacity-10 px-5 py-3"><p className="text-sm font-medium text-black dark:text-white">Rounded Pill Alert</p></div>
+          <div className="alert-sample-item rounded-md border border-stroke p-4 shadow dark:border-strokedark"><p className="font-medium text-black dark:text-white">Shadow Notice</p><p className="mt-1 text-sm text-body">Backup completed at 11:32 PM.</p></div>
+          <div className="alert-sample-item rounded-md border border-dashed border-meta-3 p-4"><p className="font-medium text-black dark:text-white">Dashed Alert</p><p className="mt-1 text-sm text-body">Draft mode is enabled for this page.</p></div>
+          <div className="alert-sample-item rounded-md bg-black p-4 text-white"><p className="font-medium">Dark Alert</p><p className="mt-1 text-sm text-white/80">Server maintenance starts tonight.</p></div>
+          <div className="alert-sample-item rounded-md bg-gradient-to-r from-primary to-meta-3 p-4 text-white"><p className="font-medium">Gradient Alert</p><p className="mt-1 text-sm text-white/90">Upgrade available for your workspace.</p></div>
+          <div className="alert-sample-item flex items-start gap-3 rounded-md border border-stroke p-4 dark:border-strokedark"><span className="mt-0.5 rounded bg-primary px-2 py-0.5 text-xs text-white">NEW</span><div><p className="font-medium text-black dark:text-white">Tag Alert</p><p className="mt-1 text-sm text-body">A fresh template was added today.</p></div></div>
         </div>
       </div>
+      </AlertSamplesCodePopup>
     </DefaultLayout>
   );
 };
